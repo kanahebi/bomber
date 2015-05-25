@@ -13,18 +13,21 @@ module Bomber
       self.agl = :up
       guide_trace
     end
+
     def move_down
       self.y += BLOCK/2
       self.y -= BLOCK/2 if self.any_hit?
       self.agl = :down
       guide_trace
     end
+
     def move_right
       self.x += BLOCK/2
       self.x -= BLOCK/2 if self.any_hit?
       self.agl = :right
       guide_trace
     end
+
     def move_left
       self.x += -BLOCK/2
       self.x -= -BLOCK/2 if self.any_hit?
@@ -38,6 +41,7 @@ module Bomber
       end
       return false
     end
+
     def reject_half
       while current_y_half?
         self.move_up

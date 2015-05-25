@@ -28,7 +28,7 @@ module Bomber
           action(:move_left)  if diff_x < 0
         end
       end
-      atack if rand(10)
+      atack if rand(10) == 0
     end
     def action(act)
       sleep 0.6

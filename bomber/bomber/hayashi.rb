@@ -20,7 +20,7 @@ module Bomber
       sleep 0.2
       self.send(action_list[num])
       reject_half
-      atack if rand(3)
+      atack if rand(3) == 0
     end
   end
 end
