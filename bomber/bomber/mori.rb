@@ -1,16 +1,18 @@
 module Bomber
   class Mori < Bomber::Character
     attr_accessor :guide, :agl
-    def initialize(costume, x, y, angle)
-      super
+    def initialize(costume, x, y, angle, target=nil)
+      super(costume, x, y, angle)
       @agl = :right
+      @target = target
       @guide = Bomber::Guide.new(self)
       @guide.trace
     end
 
-    def tracking(target)
-      diff_x = target.current_x_block - self.current_x_block
-      diff_y = target.current_y_block - self.current_y_block
+    def tracking
+      return unless @target
+      diff_x = @target.current_x_block - self.current_x_block
+      diff_y = @target.current_y_block - self.current_y_block
       before_x = self.current_x_block
       before_y = self.current_y_block
       if diff_x.abs > diff_y.abs
@@ -30,12 +32,17 @@ module Bomber
       end
       atack if rand(10) == 0
     end
+
     def action(act)
       sleep 0.6
       self.send(act)
       sleep 0.2
       self.send(act)
       reject_half
+    end
+
+    def auto
+      tracking
     end
   end
 end

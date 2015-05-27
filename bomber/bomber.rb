@@ -12,7 +12,15 @@ module Bomber
   end
 
   def other_char
-    $all_char.flatten - [self]
+    $all_obj.flatten - [self]
+  end
+
+  def hit_char
+    $hit_obj.flatten - [self]
+  end
+
+  def all_enemy
+    $enemy.flatten - [self]
   end
 
   def current_block
@@ -56,10 +64,46 @@ module Bomber
   end
 
   def current_char(x, y)
-    chars = $all_char - $blocks -[self]
+    chars = other_char - $blocks
     chars.flatten.each do |char|
       return char if char.current_block == [x, y]
     end
     return nil
+  end
+
+  def say(options = {})
+    defaults = {
+      message: '',
+      second: 0,
+    }
+    opts = process_optional_arguments(options, defaults)
+
+    message = opts[:message].to_s
+    return if message == @current_message
+
+    @current_message = message
+
+    if @balloon
+      @balloon.vanish
+      @balloon = nil
+    end
+
+    return if message.empty?
+
+    lines = message.to_s.lines.map { |l| l.scan(/.{1,10}/) }.flatten
+    font = new_font(16)
+    width = lines.map { |l| font.get_width(l) }.max
+    height = lines.length * (font.size + 1)
+    frame_size = 3
+    margin_size = 3
+    image = Image.new(width + (frame_size + margin_size) * 2,
+                     height + (frame_size + margin_size) * 2)
+
+    lines.each.with_index do |line, row|
+      image.draw_font(frame_size + margin_size,
+                    frame_size + margin_size + (font.size + 1) * row,
+                    line, font, [0, 0, 0])
+    end
+    @balloon = Sprite.new(x, y, image)
   end
 end

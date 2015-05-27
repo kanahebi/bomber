@@ -3,7 +3,7 @@ require "yaml"
 
 #$config = true
 $all_char = Array.new
-datas = YAML.load_file("./test.yml")
+datas = YAML.load_file("./config.yml")
 back = Bomber::Back.new
 
 back.on(:start) do
