@@ -45,18 +45,20 @@ module Bomber
           self.move_up
         elsif self.agl == :down
           self.move_down
+        else
+          self.move_up   if current_y_half?
+          self.move_down if current_y_half?
         end
-        self.move_up  if current_y_half?
-        self.move_down if current_y_half?
       end
       while current_x_half?
         if self.agl == :right
           self.move_right
         elsif self.agl == :left
           self.move_left
+        else
+          self.move_right if current_x_half?
+          self.move_left  if current_x_half?
         end
-        self.move_right if current_x_half?
-        self.move_left  if current_x_half?
       end
     end
 
@@ -74,13 +76,13 @@ module Bomber
       target = nil
       case @agl
       when :up
-        target = current_char(self.current_x_block, (self.current_y_block - 1))
+        target = next_char(self.current_x_block, (self.current_y_block - 1))
       when :down
-        target = current_char(self.current_x_block, (self.current_y_block + 1))
+        target = next_char(self.current_x_block, (self.current_y_block + 1))
       when :right
-        target = current_char((self.current_x_block + 1), self.current_y_block)
+        target = next_char((self.current_x_block + 1), self.current_y_block)
       when :left
-        target = current_char((self.current_x_block - 1), self.current_y_block)
+        target = next_char((self.current_x_block - 1), self.current_y_block)
       end
       target.lose if target
       sleep 0.5

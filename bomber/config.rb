@@ -1,6 +1,7 @@
 require "./bomber"
 require "yaml"
 
+Window.height += 96
 #$config = true
 $all_char = Array.new
 datas = YAML.load_file("./config.yml")

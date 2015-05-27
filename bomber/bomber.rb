@@ -63,12 +63,19 @@ module Bomber
     !!current_char(x, y)
   end
 
-  def current_char(x, y)
+  def next_char(x, y)
     chars = other_char - $blocks
+    tgt = nil
     chars.flatten.each do |char|
-      return char if char.current_block == [x, y]
+      if char.current_block == [x, y]
+        if char.class == Bomber::Door && !char.close
+          tgt = char
+          next
+        end
+        return char
+      end
     end
-    return nil
+    return tgt
   end
 
   def say(options = {})
