@@ -2,10 +2,16 @@ module Bomber
   class Ono < Bomber::Character
     attr_accessor :guide, :agl
     def initialize(costume, x, y, angle)
-      super
+      super(costume_lists, x, y, angle)
       @agl = :right
       @guide = Bomber::Guide.new(self)
       @guide.trace
+    end
+
+    def costume_lists
+      ["../image/hito.png"]#,
+       #"../image/hito2.png",
+       #"../image/hito3.png"]
     end
 
     def atack
@@ -22,6 +28,7 @@ module Bomber
     def move(move_angle=:right)
       if self.agl == move_angle
         self.send("move_#{move_angle.to_s}".to_sym)
+        next_costume
         sleep 0.1
       end
       angle_shift(move_angle)

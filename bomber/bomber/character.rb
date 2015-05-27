@@ -45,20 +45,18 @@ module Bomber
           self.move_up
         elsif self.agl == :down
           self.move_down
-        else
-          self.move_up   if current_y_half?
-          self.move_down if current_y_half?
         end
+        self.move_up   if current_y_half?
+        self.move_down if current_y_half?
       end
       while current_x_half?
         if self.agl == :right
           self.move_right
         elsif self.agl == :left
           self.move_left
-        else
-          self.move_right if current_x_half?
-          self.move_left  if current_x_half?
         end
+        self.move_right if current_x_half?
+        self.move_left  if current_x_half?
       end
     end
 
