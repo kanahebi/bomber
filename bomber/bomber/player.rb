@@ -1,5 +1,5 @@
 module Bomber
-  class Ono < Bomber::Character
+  class Player < Bomber::Character
     attr_accessor :guide, :agl
     def initialize(costume, x, y, angle)
       super(costume_lists, x, y, angle)

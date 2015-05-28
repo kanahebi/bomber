@@ -1,5 +1,5 @@
 module Bomber
-  class Mori < Bomber::Character
+  class EnemyTrace < Bomber::Character
     attr_accessor :guide, :agl
     def initialize(costume, x, y, angle, target=nil)
       super(costume, x, y, angle)
