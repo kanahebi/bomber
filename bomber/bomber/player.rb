@@ -1,7 +1,7 @@
 module Bomber
   class Player < Bomber::Character
     attr_accessor :guide, :agl
-    def initialize(costume, x, y, angle)
+    def initialize(x, y, angle)
       super(costume_lists, x, y, angle)
       @agl = :right
       @guide = Bomber::Guide.new(self)

@@ -1,12 +1,16 @@
 module Bomber
   class EnemyNormal < Bomber::Character
     attr_accessor :guide, :agl
-    def initialize(costume, x, y, angle, delay=0)
-      super(costume, x, y, angle)
+    def initialize(x, y, angle, delay=0)
+      super(costume_lists, x, y, angle)
       @agl = :right
       @delay = delay
       @guide = Bomber::Guide.new(self)
       @guide.trace
+    end
+
+    def costume_lists
+      ["../image/ene.png"]
     end
 
     def action_list

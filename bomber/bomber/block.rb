@@ -11,16 +11,13 @@ module Bomber
     end
 
     def costume_lists
-      ["../image/block_blk.png",
-       "../image/block_red.png",
-       "../image/block_yel.png",
-       "../image/block_pnk.png",
-       "../image/block_ppl.png",
-       "../image/block_grn.png"]
+      ["../image/block_stone.png",
+       "../image/block_brick.png",
+       "../image/block_wood.png"]
     end
 
     def collar_lists
-      ["blk", "red", "yel", "pnk", "ppl", "grn"]
+      ["stone", "brick", "wood"]
     end
 
     def add_event

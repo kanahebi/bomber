@@ -1,12 +1,16 @@
 module Bomber
   class EnemyTrace < Bomber::Character
     attr_accessor :guide, :agl
-    def initialize(costume, x, y, angle, target=nil)
-      super(costume, x, y, angle)
+    def initialize(x, y, angle, target=nil)
+      super(costume_lists, x, y, angle)
       @agl = :right
       @target = target
       @guide = Bomber::Guide.new(self)
       @guide.trace
+    end
+
+    def costume_lists
+      ["../image/ene2.png"]
     end
 
     def tracking

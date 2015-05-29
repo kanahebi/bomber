@@ -98,6 +98,37 @@ module Bomber
       fire.vanish
     end
 
+    def say(options = {})
+      defaults = {
+        message: '',
+        second: 0,
+      }
+      opts = process_optional_arguments(options, defaults)
+
+      message = opts[:message].to_s
+      return if message == @current_message
+
+      @current_message = message
+
+      if @balloon
+        @balloon.vanish
+        @balloon = nil
+      end
+
+      return if message.empty?
+
+      lines = message.to_s.lines.map { |l| l.scan(/.{1,10}/) }.flatten
+      font = new_font(16)
+      width = lines.map { |l| font.get_width(l) }.max
+      height = lines.length * (font.size + 1)
+      image = Image.new(width, height)
+
+      lines.each.with_index do |line, row|
+        image.draw_font(0, (font.size + 1) * row, line, font, [0, 0, 0])
+      end
+      @balloon = Sprite.new(x, y, image)
+    end
+
     def auto
     end
   end

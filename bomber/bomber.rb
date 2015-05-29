@@ -78,39 +78,17 @@ module Bomber
     return tgt
   end
 
-  def say(options = {})
-    defaults = {
-      message: '',
-      second: 0,
-    }
-    opts = process_optional_arguments(options, defaults)
+  def enemy_count(enemy_class=Bomber::EnemyNormal)
+    count = 0
+    $enemy.each{|ene| count += 1 if ene.class == enemy_class}
+    return count
+  end
 
-    message = opts[:message].to_s
-    return if message == @current_message
+  def normal_enemy_count
+    return enemy_count(Bomber::EnemyNormal)
+  end
 
-    @current_message = message
-
-    if @balloon
-      @balloon.vanish
-      @balloon = nil
-    end
-
-    return if message.empty?
-
-    lines = message.to_s.lines.map { |l| l.scan(/.{1,10}/) }.flatten
-    font = new_font(16)
-    width = lines.map { |l| font.get_width(l) }.max
-    height = lines.length * (font.size + 1)
-    frame_size = 3
-    margin_size = 3
-    image = Image.new(width + (frame_size + margin_size) * 2,
-                     height + (frame_size + margin_size) * 2)
-
-    lines.each.with_index do |line, row|
-      image.draw_font(frame_size + margin_size,
-                    frame_size + margin_size + (font.size + 1) * row,
-                    line, font, [0, 0, 0])
-    end
-    @balloon = Sprite.new(x, y, image)
+  def trace_enemy_count
+    return enemy_count(Bomber::EnemyTrace)
   end
 end
