@@ -4,6 +4,7 @@ module Bomber
     def initialize(*data)
       @close = true
       super(costume_lists(data[2]), data[0].to_i, data[1].to_i, 0)
+      self.z = 0
     end
 
     def costume_lists(data=:up)
@@ -19,6 +20,16 @@ module Bomber
       else
         $hit_obj -= [self]
       end
+    end
+
+    def destroy
+      return if self.current_y_block == 0 or self.current_y_block == HEIGHT or self.current_x_block == 0 or self.current_x_block == WIDTH
+      $hit_obj -= [self]
+      $all_obj -= [self]
+      fire = Bomber::Fire.new(*self.current_block)
+      self.vanish
+      sleep 0.1
+      fire.vanish
     end
   end
 end

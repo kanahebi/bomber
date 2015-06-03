@@ -5,13 +5,13 @@ module Bomber
     def initialize(costume, x, y, angle)
       @active = true
       super(costume: costume, x: block(x), y: block(y), angle: angle)
+      self.z = 10
     end
 
     def move_up
       self.y += -BLOCK/2
       self.y -= -BLOCK/2 if self.any_hit?
       angle_shift(:up)
-      guide_trace
     end
 
     def move_down
@@ -32,14 +32,23 @@ module Bomber
       angle_shift(:left)
     end
 
-    def any_hit?
+    def hit_target
       hit_char.flatten.each do |char|
-        return true if self.hit?(char)
+        return char if self.hit?(char)
       end
-      return false
+      return nil
+    end
+
+    def any_hit?
+      !!hit_target
     end
 
     def reject_half
+      reject_y_half
+      reject_x_half
+    end
+
+    def reject_y_half
       while current_y_half?
         if self.agl == :up
           self.move_up
@@ -49,6 +58,9 @@ module Bomber
         self.move_up   if current_y_half?
         self.move_down if current_y_half?
       end
+    end
+
+    def reject_x_half
       while current_x_half?
         if self.agl == :right
           self.move_right
@@ -69,19 +81,22 @@ module Bomber
       self.guide.trace if self.guide
     end
 
+    def next_block
+      case self.agl
+      when :up
+        return [self.current_x_block, (self.current_y_block - 1)]
+      when :down
+        return [self.current_x_block, (self.current_y_block + 1)]
+      when :right
+        return [(self.current_x_block + 1), self.current_y_block]
+      when :left
+        return [(self.current_x_block - 1), self.current_y_block]
+      end
+    end
+
     def atack
       say(message: "エイ！")
-      target = nil
-      case @agl
-      when :up
-        target = next_char(self.current_x_block, (self.current_y_block - 1))
-      when :down
-        target = next_char(self.current_x_block, (self.current_y_block + 1))
-      when :right
-        target = next_char((self.current_x_block + 1), self.current_y_block)
-      when :left
-        target = next_char((self.current_x_block - 1), self.current_y_block)
-      end
+      target = next_char(next_block)
       target.lose if target
       sleep 0.5
       say(message: "")
@@ -92,6 +107,7 @@ module Bomber
       @active = false
       self.vanish
       self.guide.vanish
+      $hit_obj -= [self]
       $all_obj -= [self]
       $enemy -= [self]
       sleep 0.1
@@ -127,6 +143,7 @@ module Bomber
         image.draw_font(0, (font.size + 1) * row, line, font, [0, 0, 0])
       end
       @balloon = Sprite.new(x, y, image)
+      @balloon.z = 10
     end
 
     def auto

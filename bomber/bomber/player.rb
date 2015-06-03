@@ -28,7 +28,7 @@ module Bomber
     def move(move_angle=:right)
       if self.agl == move_angle
         self.send("move_#{move_angle.to_s}".to_sym)
-        next_costume
+        #next_costume
         sleep 0.1
       end
       angle_shift(move_angle)

@@ -8,6 +8,21 @@ module Bomber
       elsif data.class == Array
         super(costume_lists, data[0], data[1], 0)
       end
+      self.z = 0
+    end
+
+    def destroy
+      return if self.wall?
+      $hit_obj -= [self]
+      $all_obj -= [self]
+      fire = Bomber::Fire.new(*self.current_block)
+      self.vanish
+      sleep 0.1
+      fire.vanish
+    end
+
+    def wall?
+      self.current_y_block == 0 or self.current_y_block == HEIGHT or self.current_x_block == 0 or self.current_x_block == WIDTH
     end
 
     def costume_lists

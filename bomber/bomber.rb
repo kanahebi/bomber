@@ -7,6 +7,9 @@ end
 
 module Bomber
   BLOCK = 32
+  WIDTH = 19
+  HEIGHT = 14
+
   def block(num)
     BLOCK * num
   end
@@ -63,11 +66,11 @@ module Bomber
     !!current_char(x, y)
   end
 
-  def next_char(x, y)
-    chars = other_char - $blocks
+  def next_char(xy, in_block=false)
+    chars = in_block ? other_char : other_char - $blocks
     tgt = nil
     chars.flatten.each do |char|
-      if char.current_block == [x, y]
+      if char.current_block == xy
         if char.class == Bomber::Door && !char.close
           tgt = char
           next
@@ -90,5 +93,17 @@ module Bomber
 
   def trace_enemy_count
     return enemy_count(Bomber::EnemyTrace)
+  end
+
+  def wizard_enemy_count
+    return enemy_count(Bomber::EnemyWizard)
+  end
+
+  def hammer_enemy_count
+    return enemy_count(Bomber::EnemyHammer)
+  end
+
+  def shooter_enemy_count
+    return enemy_count(Bomber::EnemyShooter)
   end
 end

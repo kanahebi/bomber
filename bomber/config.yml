@@ -275,3 +275,6 @@
 - x: 15
   y: 10
   col: wood
+- x: 12
+  y: 14
+  col: stone
