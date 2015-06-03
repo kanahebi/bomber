@@ -18,6 +18,7 @@ module Bomber
     end
 
     def auto
+      super
       num = rand(4)
       sleep @delay
       sleep 0.3

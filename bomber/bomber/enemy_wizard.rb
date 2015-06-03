@@ -22,6 +22,7 @@ module Bomber
     end
 
     def auto
+      super
       generate_block
     end
 

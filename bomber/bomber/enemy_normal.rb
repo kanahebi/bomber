@@ -18,6 +18,7 @@ module Bomber
     end
 
     def auto
+      super
       random_move
     end
 

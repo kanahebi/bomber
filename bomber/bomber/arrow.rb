@@ -14,6 +14,7 @@ module Bomber
     end
 
     def shoot
+      return if self.vanished?
       case @agl
       when :up
         @vani = @init_block - 4 == self.current_y_block
@@ -29,13 +30,14 @@ module Bomber
         self.x += BLOCK/2
       end
       if self.any_hit?
-        if hit_target.class == Bomber::Block or hit_target.class == Bomber::Door
+        tag = hit_target
+        if tag.class == Bomber::Block or tag.class == Bomber::Door
           @vani = true
-        elsif hit_target == @target
+        elsif tag == @target
           @vani = false
         else
           @vani = true
-          hit_target.lose
+          tag.lose
         end
       end
       if @vani

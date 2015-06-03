@@ -22,6 +22,7 @@ module Bomber
     end
 
     def auto
+      super
       break_block
     end
 

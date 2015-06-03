@@ -147,6 +147,7 @@ module Bomber
     end
 
     def auto
+      return if self.vanished?
     end
   end
 end
