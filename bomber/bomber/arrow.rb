@@ -42,6 +42,7 @@ module Bomber
       end
       if @vani
         self.vanish
+        self.active = false
       end
       sleep 0.2
     end

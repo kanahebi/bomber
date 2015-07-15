@@ -31,8 +31,9 @@ module Bomber
 
     def shoot
       arrow = Bomber::Arrow.new(self)
+      arrow.z = 5
       arrow.on(:start) do
-        loop do
+        while self.active do
           self.shoot
         end
       end
