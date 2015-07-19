@@ -1,20 +1,25 @@
 require_relative  "./bomber"
-require "yaml"
 
 Window.height += 64
+
 $all_obj = Array.new
 $hit_obj = Array.new
+
 $blocks = Array.new
-doors = Array.new
 datas = YAML.load_file(File.expand_path("../config.yml", __FILE__))
 datas.each do |data|
   $blocks << block =  Bomber::Block.new(data)
 end
+
+doors = Array.new
 doors << door1 = Bomber::Door.new( 8,  4, :up)
 doors << door2 = Bomber::Door.new( 6,  6, :left)
 doors << door3 = Bomber::Door.new(10,  6, :right)
 doors << door4 = Bomber::Door.new( 8,  8, :down)
-$all_obj << player = Bomber::Player.new(1, 1, 0)
+
+player = Bomber::Player.new(1, 1, 0)
+$all_obj << player
+
 $enemy = Array.new
 $enemy << Bomber::EnemyNormal.new( 1, 13, 0, 0.3)
 $enemy << Bomber::EnemyNormal.new( 5, 12, 0, 0.4)
@@ -36,19 +41,27 @@ $enemy << Bomber::EnemyWizard.new(13,  9, 0)
 $enemy << Bomber::EnemyWizard.new(15, 13, 0)
 $enemy << Bomber::EnemyHammer.new(10,  3, 0)
 $enemy << Bomber::EnemyHammer.new(10, 13, 0)
-statusbar1 = Bomber::Statusbar.new("../image/ene.png", 0, 15, 0)
-statusbar2 = Bomber::Statusbar.new("../image/ene2.png", 2, 15, 0)
-statusbar3 = Bomber::Statusbar.new("../image/wiz.png", 4, 15, 0)
-statusbar4 = Bomber::Statusbar.new("../image/hun.png", 6, 15, 0)
-statusbar5 = Bomber::Statusbar.new("../image/bow.png", 8, 15, 0)
-statusbar6 = Bomber::Statusbar.new("../image/clear.png", 9, 15, 0)
 
-$all_obj << $blocks + $enemy + doors
+$enemy.each do |ene|
+  ene.on(:start) do
+    while self.active do
+      if self.active
+        self.auto
+      end
+    end
+  end
+end
+
+$all_obj << $blocks
+$all_obj << $enemy
+$all_obj << doors
 $all_obj.flatten!
-$hit_obj << $blocks + $enemy + doors
+
+$hit_obj << $blocks
+$hit_obj << $enemy
+$hit_obj << doors
 $hit_obj << player
 $hit_obj.flatten!
-
 
 player.on(:start) do
   on(:key_down, K_RIGHT) do
@@ -72,46 +85,43 @@ player.on(:start) do
   end
 end
 
-$enemy.each do |ene|
-  ene.on(:start) do
-    while self.active do
-      if self.active
-        self.auto
-      end
-    end
-  end
-end
 
+statusbar1 = Bomber::Statusbar.new("../image/ene.png", 0, 15, 0)
 statusbar1.on(:start) do
   loop do
     self.enemy_status(normal_enemy_count)
   end
 end
 
+statusbar2 = Bomber::Statusbar.new("../image/ene2.png", 2, 15, 0)
 statusbar2.on(:start) do
   loop do
     self.enemy_status(trace_enemy_count)
   end
 end
 
+statusbar3 = Bomber::Statusbar.new("../image/wiz.png", 4, 15, 0)
 statusbar3.on(:start) do
   loop do
     self.enemy_status(wizard_enemy_count)
   end
 end
 
+statusbar4 = Bomber::Statusbar.new("../image/hun.png", 6, 15, 0)
 statusbar4.on(:start) do
   loop do
     self.enemy_status(hammer_enemy_count)
   end
 end
 
+statusbar5 = Bomber::Statusbar.new("../image/bow.png", 8, 15, 0)
 statusbar5.on(:start) do
   loop do
     self.enemy_status(shooter_enemy_count)
   end
 end
 
+statusbar6 = Bomber::Statusbar.new("../image/clear.png", 9, 15, 0)
 statusbar6.on(:start) do
   loop do
     self.time_status

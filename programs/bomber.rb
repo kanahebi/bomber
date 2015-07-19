@@ -1,6 +1,5 @@
 require "smalruby"
 require_relative  "./bomber/character.rb"
-
 Dir[File.expand_path('../bomber', __FILE__) << '/*.rb'].each do |file|
   require file
 end
