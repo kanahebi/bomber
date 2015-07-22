@@ -1,6 +1,6 @@
 module Bomber
   class Character < Smalruby::Character
-    attr_accessor :active
+    attr_accessor :active, :score
     include Bomber
     def initialize(costume, x, y, angle)
       @active = true
@@ -97,7 +97,12 @@ module Bomber
     def atack
       say(message: "エイ！")
       target = next_char(next_block)
-      target.lose if target
+      if target
+        target.lose
+        if self.class == Bomber::Player
+          $score += target.score.to_i
+        end
+      end
       sleep 0.5
       say(message: "")
     end
