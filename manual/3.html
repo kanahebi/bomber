@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">
+  code{white-space: pre;}
+  .break { page-break-before: always; }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { margin-left: 50px; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="github.css">
+</head>
+<body>
+<h1 id="ruby">３．Rubyの基礎</h1>
+<p>いよいよプログラミング言語『Ruby』を使ったプログラミングをはじめます。<br />ここではRubyの基本的な構文について解説します。</p>
+<h2>文字列と数値</h2>
+<h3>文字列</h3>
+<p>「&quot;」ダブルコーテーションで囲んだ文字を文字列と言います。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="st">&quot;Hello World&quot;</span></code></pre></td></tr></table></div>
+<p>文字をダブルコーテーションで囲まないとエラーになります。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="dt">Hello</span> <span class="dt">World</span></code></pre></td></tr></table></div>
+<h3>数値</h3>
+<p>ダブルコーテーションで囲んでいない0～9までの文字を数値と言います。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="dv">1</span></code></pre></td></tr></table></div>
+<p>0～9までの文字はダブルコーテーションで囲まなくてもエラーになりません。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="dv">1</span></code></pre></td></tr></table></div>
+<h2 class="break">四則演算</h2>
+<h3>足し算</h3>
+<p>数値は足し算ができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="dv">1</span> + <span class="dv">1</span></code></pre></td></tr></table></div>
+<h3>引き算</h3>
+<p>数値は引き算ができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="dv">2</span> - <span class="dv">1</span></code></pre></td></tr></table></div>
+<h3>掛け算</h3>
+<p>数値は掛け算ができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="dv">2</span> * <span class="dv">3</span></code></pre></td></tr></table></div>
+<h3>割り算</h3>
+<p>数値は割り算ができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="dv">4</span> / <span class="dv">2</span></code></pre></td></tr></table></div>
+<h3>四則演算の混合</h3>
+<p>足し算と引き算、掛け算と割り算は左から順番に実行されます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="dv">2</span> + <span class="dv">3</span> - <span class="dv">1</span>
+puts <span class="dv">3</span> * <span class="dv">4</span> / <span class="dv">6</span></code></pre></td></tr></table></div>
+<p>掛け算と割り算は、足し算と引き算より先に実行されます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="dv">2</span> + <span class="dv">3</span> * <span class="dv">4</span>
+puts <span class="dv">5</span> - <span class="dv">2</span> / <span class="dv">3</span></code></pre></td></tr></table></div>
+<p>()内の演算は、()の外の演算より先に実行されます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts (<span class="dv">1</span> + <span class="dv">2</span>) * <span class="dv">4</span>
+puts <span class="dv">5</span> + (<span class="dv">7</span> - <span class="dv">3</span>)</code></pre></td></tr></table></div>
+<h3>整数と小数の演算</h3>
+<p>整数のみの四則演算の答えは整数になります。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="dv">1</span> + <span class="dv">4</span>
+puts <span class="dv">8</span> - <span class="dv">3</span>
+puts <span class="dv">6</span> * <span class="dv">7</span>
+puts <span class="dv">5</span> / <span class="dv">2</span></code></pre></td></tr></table></div>
+<p>小数が含まれている四則演算の答えは小数になります。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="dv">1</span> + <span class="fl">4.0</span>
+puts <span class="fl">8.0</span> - <span class="dv">3</span>
+puts <span class="fl">6.0</span> * <span class="fl">0.7</span>
+puts <span class="fl">5.0</span> / <span class="dv">2</span></code></pre></td></tr></table></div>
+<h3>便利な演算子</h3>
+<p>「%」は割り算の余りを返します。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="dv">5</span> % <span class="dv">2</span></code></pre></td></tr></table></div>
+<p>「**」はべき乗の演算ができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="dv">3</span> ** <span class="dv">4</span></code></pre></td></tr></table></div>
+<h2 class="break">変数</h2>
+<h3>変数とは</h3>
+<p>変数とは、文字列や数値等をしまっておく箱のようなものです。<br />変数には好きな名前を付ける事ができます。<br />変数は以下のように使います。これは変数「a」に数値「10」を代入するという意味です。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a = <span class="dv">10</span></code></pre></td></tr></table></div>
+<h3>代入</h3>
+<p>代入とは、変数に文字列や数値等をしまうことです。<br />以下のように使います。</p>
+<p>変数「b」に数値「7」を代入します。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">b = <span class="dv">7</span></code></pre></td></tr></table></div>
+<p>変数「c」に文字列「hello」を代入します。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">c = <span class="st">&quot;hello&quot;</span></code></pre></td></tr></table></div>
+<p>変数「d」に式「1+2」を代入します。変数「d」に「1+2」の結果「3」が代入されます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">d = <span class="dv">1</span> + <span class="dv">2</span></code></pre></td></tr></table></div>
+<p>変数「e」に数値「3」を代入します。変数「f」に「e+2」を代入します。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">e = <span class="dv">3</span>
+f = e + <span class="dv">2</span></code></pre></td></tr></table></div>
+<h3>自己代入</h3>
+<p>以下のように変数「a」へ、変数「a」に値を加算した結果を代入する事を自己代入と言います。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a = <span class="dv">1</span>
+a = a + <span class="dv">2</span></code></pre></td></tr></table></div>
+<p>「a = a + 2」は以下のように短縮して書くこともできます。</p>
+<h4 id="a-a-1">足し算(a = a + 1)</h4>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a += <span class="dv">1</span></code></pre></td></tr></table></div>
+<p>他にも以下のような自己代入ができます。</p>
+<h4 id="a-a---2">引き算(a = a - 2)</h4>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a -= <span class="dv">2</span></code></pre></td></tr></table></div>
+<h4 id="a-a-3">掛け算(a = a * 3)</h4>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a *= <span class="dv">3</span></code></pre></td></tr></table></div>
+<h4 id="a-a-4">割り算(a = a / 4)</h4>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a /= <span class="dv">4</span></code></pre></td></tr></table></div>
+<h2 class="break">式展開</h2>
+<p>文字列の中に値(変数や数値や式)を埋め込む事を式展開と言います。<br />式展開は以下のように使います。値を「#{}」で囲むと、文字列に埋め込まれます。</p>
+<p>変数を埋め込む</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a = <span class="dv">2</span>
+puts <span class="st">&quot;変数aは </span><span class="ot">#{</span>a<span class="ot">}</span><span class="st"> です。&quot;</span></code></pre></td></tr></table></div>
+<p>式を埋め込む</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="st">&quot;1 + 5 = </span><span class="ot">#{</span><span class="dv">1</span> + <span class="dv">5</span><span class="ot">}</span><span class="st">&quot;</span></code></pre></td></tr></table></div>
+<h2 class="break" id="sleep">sleep</h2>
+<p>sleepメソッドを使うと、プログラムの処理を一定時間停止させることができます。<br />以下のようにsleep の後に停止する秒数を指定します。</p>
+<p>1秒刊停止する</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">sleep <span class="dv">1</span></code></pre></td></tr></table></div>
+<p>停止する秒数の指定を省くと、永久に停止する</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">sleep</code></pre></td></tr></table></div>
+<h2 class="break">条件分岐</h2>
+<h3>真偽</h3>
+<p>Rubyでは真偽を「true」「false」を使って表現します。</p>
+<h4>真</h4>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="dv">true</span></code></pre></td></tr></table></div>
+<h4>偽</h4>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="dv">false</span></code></pre></td></tr></table></div>
+<p>rubyでは、「false」と「nil」が「偽」、それ以外が「真」になります。</p>
+<h3>比較演算子</h3>
+<p>「○○と等しい」「△△よりも大きい」等の比較に使用する演算子を比較演算子と言います。</p>
+<p>「a」は「b」と等しい</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a == b</code></pre></td></tr></table></div>
+<p>「c」は「d」と等しくない</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">c != d</code></pre></td></tr></table></div>
+<p>「e」は「f」より大きい</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">e &gt; f</code></pre></td></tr></table></div>
+<p>「g」は「h」より小さい</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">g &lt; h</code></pre></td></tr></table></div>
+<p>「i」は「j」以上(「i」は「j」より大きいか等しい)</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">i &gt;= j</code></pre></td></tr></table></div>
+<p>「k」は「l」以下(「k」は「l」より小さいか等しい</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">k &lt;= l</code></pre></td></tr></table></div>
+<p>比較結果は「true」「false」で表す</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="dv">1</span> == <span class="dv">2</span>
+puts <span class="dv">1</span> != <span class="dv">2</span>
+puts <span class="dv">1</span> &gt; <span class="dv">2</span>
+puts <span class="dv">1</span> &lt; <span class="dv">2</span>
+puts <span class="dv">1</span> &gt;= <span class="dv">2</span>
+puts <span class="dv">1</span> &lt;= <span class="dv">2</span></code></pre></td></tr></table></div>
+<h3 id="if">if文</h3>
+<p>if文を使うと、「もしも条件がtrueならば、処理Aを実行する。」というように、プログラムの流れを分岐させることができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">if</span> 条件
+  条件がtrueの時実行する処理A
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<p>「a」が2と等しければ「aは2と等しい」と表示する</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a = <span class="dv">2</span>
+<span class="kw">if</span> a == <span class="dv">2</span>
+  puts <span class="st">&quot;aは2と等しい&quot;</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h4 id="else">else</h4>
+<p>elseを使うと、「もしも条件がtrueならば、処理Aを実行する。そうでなければ、処理Bを実行する」というように、プログラムの流れを分岐させることができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">if</span> 条件
+  処理A
+<span class="kw">else</span>
+  処理B
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<p>「a」が2と等しければ「aは2と等しい」と表示する。そうでなければ、「aは2と等しくない」と表示する。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a = <span class="dv">2</span>
+<span class="kw">if</span> a == <span class="dv">2</span>
+  puts <span class="st">&quot;aは2と等しい&quot;</span>
+<span class="kw">else</span>
+  puts <span class="st">&quot;aは2と等しくない&quot;</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h4 id="elsif">elsif</h4>
+<p>elsifを使うと「もしも条件Aがtrueならば、処理Aを実行する。そうでない時、もしも条件Bがtrueならば、処理Bを実行する。そうでなかったら、処理Cを実行する」というように、プログラムの流れを分岐させることができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">if</span> 条件A
+  処理A
+<span class="kw">elsif</span> 条件B
+  処理B
+<span class="kw">else</span>
+  処理C
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<p>「a」が2と等しければ「aは2と等しい」と表示する。そうでない時、「a」が3と等しければ「aは3と等しい」と表示する。そうでなければ「aは2とも3とも等しくない」と表示する。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a = <span class="dv">3</span>
+<span class="kw">if</span> a == <span class="dv">2</span>
+  puts <span class="st">&quot;aは2と等しい&quot;</span>
+<span class="kw">elsif</span> a == <span class="dv">3</span>
+  puts <span class="st">&quot;aは3と等しい&quot;</span>
+<span class="kw">else</span>
+  puts <span class="st">&quot;aは2とも2とも等しくない&quot;</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h3 id="unless">unless文</h3>
+<p>unless文を使うと、「もしも条件がtrueでなければ、処理Aを実行する。」というように、プログラムの流れを分岐させることができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">unless</span> 条件
+  条件がfalseの時実行する処理A
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<p>「a」が2と等しくなければ「aは2と等しくない」と表示する。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a = <span class="dv">3</span>
+<span class="kw">unless</span> a == <span class="dv">2</span>
+  puts <span class="st">&quot;aは2と等しくない&quot;</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h4 id="else-1">else</h4>
+<p>unless文でも、if文と同様にelseを使用できます。elseを使うと、「もしも条件がtrueでなければ、処理Aを実行する。そうでなければ、処理Bを実行する」というように、プログラムの流れを分岐させることができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">unless</span> 条件
+  処理A
+<span class="kw">else</span>
+  処理B
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<p>「a」が2と等しくなければ「aは2と等しくない」と表示する。そうでなければ、「aは2と等しい」と表示する。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a = <span class="dv">3</span>
+<span class="kw">unless</span> a == <span class="dv">2</span>
+  puts <span class="st">&quot;aは2と等しくない&quot;</span>
+<span class="kw">else</span>
+  puts <span class="st">&quot;aは2と等しい&quot;</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h4 id="elsif-1">elsif</h4>
+<p>unless文ではelsifを使う事は出来ません。</p>
+<h3 id="ifunless">if文、unless文のネスト(入れ子)</h3>
+<p>if文(unless文)をif文(unless文)の中に入れ込むことができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">if</span> 条件式A
+  <span class="kw">if</span> 条件式B
+    処理B
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h3>論理演算子</h3>
+<p>if文などで「もしも条件Aがtrue、かつ条件Bがtrueならば、処理Aを実行する」という複雑な条件式を記述する場合は論理演算子を使います。</p>
+<h4 id="and">and</h4>
+<p>andを使うと「条件Aがtrue、かつ条件Bがtrue」という条件式を書くことができます。<br />条件Aと条件Bが両方ともtrueの場合は真、どちらかがfalseの場合は偽になります。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">条件A <span class="kw">and</span> 条件B</code></pre></td></tr></table></div>
+<p>「a &gt; 1」がtrue、かつ「b &gt; 2」がtrue</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a &gt; <span class="dv">1</span> <span class="kw">and</span> b &gt; <span class="dv">2</span></code></pre></td></tr></table></div>
+<p>「a」が1と等しい、かつ「b」が2と等しければ、「a == 1 and b == 2はtrue」と表示する。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a = <span class="dv">1</span>
+b = <span class="dv">2</span>
+<span class="kw">if</span> a == <span class="dv">1</span> <span class="kw">and</span> b == <span class="dv">2</span>
+  puts <span class="st">&quot;a == 1 and b == 2はtrue&quot;</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h4 id="or">or</h4>
+<p>orを使うと「条件Aがtrue、または条件Bがtrue」という条件式を書くことができます。<br />条件Aと条件Bのいずれかがtrueの場合は真、両方falseの場合は偽になります。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">条件A <span class="kw">or</span> 条件B</code></pre></td></tr></table></div>
+<p>「a &gt; 1」がtrue、または「b &gt; 2」がtrue</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a &gt; <span class="dv">1</span> <span class="kw">or</span> b &gt; <span class="dv">2</span></code></pre></td></tr></table></div>
+<p>「a」が1と等しい、または「b」が2と等しければ、「a == 1 or b == 2はtrue」と表示する</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a = <span class="dv">1</span>
+b = <span class="dv">3</span>
+<span class="kw">if</span> a == <span class="dv">1</span> <span class="kw">or</span> b == <span class="dv">2</span>
+  puts <span class="st">&quot;a == 1 or b == 2はtrue&quot;</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h4>&amp;&amp; と ||</h4>
+<p>「&amp;&amp;」は「and」と同じ意味です。andより優先順位が高くなっています。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a &gt; <span class="dv">1</span> &amp;&amp; b &gt; <span class="dv">2</span></code></pre></td></tr></table></div>
+<p>「||」は「or」と同じ意味です。orより優先順位が高くなっています。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a &gt; <span class="dv">1</span> || b &gt; <span class="dv">2</span></code></pre></td></tr></table></div>
+<h3 id="case">case文</h3>
+<p>case文を使うと、「変数Aの値が、値Aならば処理A、値Bならば処理B、値Cならば処理Cを実行する。」というように、プログラムの流れを分岐させることができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">case</span> 変数A
+<span class="kw">when</span> 値A
+  処理A
+<span class="kw">when</span> 値B
+  処理B
+<span class="kw">when</span> 値C
+  処理C
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<p>case文でもif文と同じように、elseを使う事ができます。</p>
+<p>「a」が、1ならば「あいうえお」、2ならば「かきくけこ」、3ならば「さしすせそ」、そうでなければ「ABC」と表示する。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a = <span class="dv">1</span>
+<span class="kw">case</span> a
+<span class="kw">when</span> <span class="dv">1</span>
+  puts <span class="st">&quot;あいうえお&quot;</span>
+<span class="kw">when</span> <span class="dv">2</span>
+  puts <span class="st">&quot;かきくけこ&quot;</span>
+<span class="kw">when</span> <span class="dv">3</span>
+  puts <span class="st">&quot;さしすせそ&quot;</span>
+<span class="kw">else</span>
+  puts <span class="st">&quot;ABC&quot;</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h2 class="break">繰り返し</h2>
+<h3 id="while">while文</h3>
+<p>while文を使うと「条件がtrueの間、処理Aを繰り返し実行する」というように繰り返し処理を行う事ができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">while 条件式 <span class="kw">do</span>
+  処理A
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<p>「a」が10より小さい間、「○回目の繰り返し」と繰り返し表示する。○回目の「○」には現在の「a」の値を表示させる。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a = <span class="dv">1</span>
+while a &lt; <span class="dv">10</span> <span class="kw">do</span>
+  puts <span class="st">&quot;</span><span class="ot">#{</span>a<span class="ot">}</span><span class="st">回目の繰り返し&quot;</span>
+  a += <span class="dv">1</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h3 id="until">until文</h3>
+<p>until文を使うと「条件がfalseの間、処理Aを繰り返し実行する」というように繰り返し処理を行う事ができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">until</span> 条件 <span class="kw">do</span>
+  処理A
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<p>「a」が1より小さくない間、「aは1より小さくない」と繰り返し表示する。○回目の「○」には現在の「a」の値を表示させる。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a = <span class="dv">10</span>
+<span class="kw">until</span> a &lt; <span class="dv">1</span> <span class="kw">do</span>
+  puts <span class="st">&quot;aは1より小さくない&quot;</span>
+  a -= <span class="dv">1</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h3>繰り返し中に使えるメソッド</h3>
+<h4 id="break">break</h4>
+<p>途中で繰り返しを抜けたいときは<code>break</code>を使います。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">while <span class="dv">true</span> <span class="kw">do</span>
+  puts <span class="st">&quot;繰り返しを抜けます。&quot;</span>
+  <span class="kw">break</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h4 id="next">next</h4>
+<p>次の繰り返しにジャンプしたい時は<code>next</code>を使います。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a = <span class="dv">0</span>
+while a &lt; <span class="dv">10</span> <span class="kw">do</span>
+  a += <span class="dv">1</span>
+  <span class="kw">if</span> a == <span class="dv">5</span>
+    puts <span class="st">&quot;次の繰り返しにジャンプします。&quot;</span>
+    <span class="kw">next</span>
+  <span class="kw">end</span>
+  puts <span class="st">&quot;aは </span><span class="ot">#{</span>a<span class="ot">}</span><span class="st"> です。&quot;</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h4 id="redo">redo</h4>
+<p>現在の繰り返しをやり直したい時は<code>redo</code>を使います。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">a = <span class="dv">0</span>
+while a &lt; <span class="dv">10</span> <span class="kw">do</span>
+  a += <span class="dv">1</span>
+  puts <span class="st">&quot;aは </span><span class="ot">#{</span>a<span class="ot">}</span><span class="st"> です。&quot;</span>
+  <span class="kw">if</span> a == <span class="dv">5</span>
+    puts <span class="st">&quot;現在の繰り返しをやり直します。&quot;</span>
+    <span class="kw">redo</span>
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h2 class="break">乱数</h2>
+<h3 id="rand">rand</h3>
+<p>randメソッドは乱数を発生させます。0から値A未満の範囲で乱数を発生させます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">rand 値A</code></pre></td></tr></table></div>
+<p>0から9までの乱数を発生させる。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">rand <span class="dv">10</span></code></pre></td></tr></table></div>
+<p>1から値Aまでの範囲で乱数を発生させる。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">(rand 値A) + <span class="dv">1</span></code></pre></td></tr></table></div>
+<p>1から10までの範囲で乱数を発生させる。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">(rand <span class="dv">10</span>) + <span class="dv">1</span></code></pre></td></tr></table></div>
+<h2 class="break" id="gets">gets</h2>
+<p>getsメソッドを使うと、キーボードからの入力を取得することができます。入力している間はプログラムが停止します。文字を入力したらエンターキーで決定します。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">gets</code></pre></td></tr></table></div>
+<p>getsメソッドで取得する値には、改行が含まれています。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="st">&quot;名前を入力してください&quot;</span>
+name = gets
+puts <span class="st">&quot;名前は </span><span class="ot">#{</span>name<span class="ot">}</span><span class="st"> です。&quot;</span></code></pre></td></tr></table></div>
+<p>getsの後に、「chomp」メソッドを付けると、改行を取り除くことができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="st">&quot;名前を入力してください&quot;</span>
+name = gets.chomp
+puts <span class="st">&quot;名前は </span><span class="ot">#{</span>name<span class="ot">}</span><span class="st"> です。&quot;</span></code></pre></td></tr></table></div>
+<h2 class="break">メソッド</h2>
+<p>同じような処理を何回も使いたい時は、メソッドを使います。メソッドを使うことで、プログラムが見やすくなったり、修正しやすくなったりします。</p>
+<p>メソッドは以下のように定義します。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">def</span> メソッド名
+  処理A
+  処理B
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<p>次のプログラムは同じ処理が何回も書かれています。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="st">&quot;Hello&quot;</span>
+sleep <span class="dv">1</span>
+puts <span class="st">&quot;Hello&quot;</span>
+sleep <span class="dv">1</span>
+puts <span class="st">&quot;Hello&quot;</span>
+sleep <span class="dv">1</span>
+puts <span class="st">&quot;Hello&quot;</span>
+sleep <span class="dv">1</span></code></pre></td></tr></table></div>
+<p>メソッドを使うと次のように書くことができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">def</span> puts_hello
+  puts <span class="st">&quot;Hello&quot;</span>
+  sleep <span class="dv">1</span>
+<span class="kw">end</span>
+
+puts_hello
+puts_hello
+puts_hello</code></pre></td></tr></table></div>
+<p>メソッドを定義する時に引数を付けることができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">def</span> メソッド名(引数)
+  処理A
+  処理B
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<p>次のプログラムは同じような処理が何回も書かれています。それぞれの処理の違いは、<code>puts</code>で表示する文字列です。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">puts <span class="st">&quot;Hello&quot;</span>
+sleep <span class="dv">1</span>
+puts <span class="st">&quot;good morning&quot;</span>
+sleep <span class="dv">1</span>
+puts <span class="st">&quot;good evening&quot;</span>
+sleep <span class="dv">1</span>
+puts <span class="st">&quot;good night&quot;</span>
+sleep <span class="dv">1</span></code></pre></td></tr></table></div>
+<p>メソッドを使うと次のように書くことができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">def</span> puts_greeting(word)
+  puts word
+  sleep <span class="dv">1</span>
+<span class="kw">end</span>
+
+puts_greeting(<span class="st">&quot;good morning&quot;</span>)
+puts_greeting(<span class="st">&quot;good evening&quot;</span>)
+puts_greeting(<span class="st">&quot;good night&quot;</span>)</code></pre></td></tr></table></div>
+<h2 class="break">クラスとオブジェクト</h2>
+<h3>オブジェクト</h3>
+<p><code>1</code>のような数値や<code>&quot;Hello&quot;</code>のような文字列など、Rubyのプログラムにでてくる「もの」を「オブジェクト」と言います。<br />オブジェクトは、「クラス」から生成されます。</p>
+<p><code>1</code>は数値クラスのオブジェクト、<code>&quot;Hello&quot;</code>は文字列クラスのオブジェクトです。</p>
+<h3>クラス</h3>
+<p>クラスには、生成するオブジェクトの性質や、機能を定義します。</p>
+<h3>クラスの定義</h3>
+<p>クラスは以下のように定義します。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">class</span> クラス名
+  クラスの性質、機能など
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h3>オブジェクトの生成</h3>
+<p>以下のようにしてオブジェクトを生成します。変数に代入することで生成したオブジェクトの操作が簡単になります。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">object = クラス名.new</code></pre></td></tr></table></div>
+<h3>オブジェクトのメソッド</h3>
+<p>クラスにはメソッドを定義することができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">class</span> クラス名
+  <span class="kw">def</span> メソッド名
+    処理
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<p>定義したメソッドは、生成したオブジェクトから呼び出すことができます。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">class</span> <span class="dt">Greet</span>
+  <span class="kw">def</span> hello
+    puts <span class="st">&quot;Hello&quot;</span>
+  <span class="kw">end</span>
+<span class="kw">end</span>
+
+greet = <span class="dt">Greet</span>.new
+greet.hello</code></pre></td></tr></table></div>
+</body>
+</html>
