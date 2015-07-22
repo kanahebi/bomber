@@ -3,6 +3,7 @@ module Bomber
     attr_accessor :guide, :agl
     def initialize(x, y, angle, target=nil)
       super(costume_lists, x, y, angle)
+      @score = 5
       @agl = :right
       @target = target
       @guide = Bomber::Guide.new(self)
