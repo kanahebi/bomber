@@ -1,0 +1,7 @@
+{
+  ".source.go": {
+    "editor": {
+      "commentStart": "// "
+    }
+  }
+}

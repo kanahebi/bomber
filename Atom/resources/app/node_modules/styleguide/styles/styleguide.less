@@ -1,0 +1,110 @@
+@import "ui-variables";
+@import "syntax-variables";
+
+.styleguide {
+  position: relative;
+  overflow: auto;
+  font-size: 12px;
+
+  & > section {
+    &.bordered {
+      padding: @component-padding*2;
+    }
+
+    & :last-child {
+      margin-bottom: 0;
+    }
+
+    &.collapsed {
+      > .section-heading {
+        display: block;
+        margin: 0;
+        color: @text-color;
+      }
+      > * {
+        display: none
+      }
+    }
+  }
+
+  section .section-heading {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.6em;
+    color: @text-color-highlight;
+    &:hover {
+      color: @text-color-highlight;
+    }
+  }
+
+  section[data-name="styleguide"] {
+    border-top: none;
+  }
+
+  .popover-list {
+    position: relative;
+  }
+
+  .select-list, .popover-list {
+    atom-text-editor[mini] { height: 27px; }
+  }
+
+  .tooltip {
+    position: relative;
+    opacity: 1;
+    display: inline-block;
+    margin-right: @component-padding;
+  }
+
+  .btn-collapse-all {
+    position: absolute;
+    right: @component-padding;
+    top: @component-padding;
+    z-index: 100;
+  }
+}
+
+.example {
+  @example-background: lighten(@tool-panel-background-color, 2%);
+
+  display: -webkit-flex;
+  border: 1px solid @tool-panel-border-color;
+  border-radius: @component-border-radius;
+  margin: @component-padding 0;
+
+  > * { width: 50%; }
+
+  .example-rendered {
+    position: relative;
+    padding: @component-padding;
+    background: @example-background;
+    overflow: hidden;
+    border-radius: @component-border-radius 0 0 @component-border-radius;
+
+    .ui-site-1, .ui-site-2, .ui-site-3, .ui-site-4, .ui-site-5 {
+      height: 10px;
+      width: 100px;
+    }
+  }
+
+  .example-code {
+    position: relative;
+    background-color: @syntax-background-color;
+    border-left: 1px solid @tool-panel-border-color;
+
+    &.show-example-space-pen {
+      .example-space-pen { display: block; }
+    }
+
+    &.show-example-html {
+      .example-html { display: block; }
+    }
+
+    .btn-group{
+      position: absolute;
+      top: @component-padding;
+      right: @component-padding;
+      z-index: 10;
+    }
+  }
+}

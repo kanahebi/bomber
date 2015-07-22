@@ -1,0 +1,41 @@
+@import "ui-variables";
+@import "octicon-mixins";
+
+.key-binding-resolver {
+  -webkit-flex: 0.25;
+  overflow: auto;
+
+  .keystroke {
+    margin-right: 1em;
+  }
+
+  table {
+    .used {
+      color: @text-color-success;
+    }
+
+    .unused {
+      color: @text-color;
+    }
+
+    .unmatched {
+      color: @text-color-subtle;
+    }
+
+    .used .command, .unused .command{
+      .octicon(check);
+    }
+
+    .unmatched .command {
+      .octicon(x);
+    }
+
+    .command, .selector, .source {
+      min-width: 10em;
+    }
+
+    .source {
+      cursor: pointer;
+    }
+  }
+}

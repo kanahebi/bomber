@@ -1,0 +1,10 @@
+{
+  ".source.perl": {
+    "editor": {
+      "foldEndPattern": "(\\*/|^\\s*(\\}|\\]|\\)))",
+      "increaseIndentPattern": "^.*\\{\\}?\\s*$",
+      "decreaseIndentPattern": "^\\s*\\}",
+      "commentStart": "# "
+    }
+  }
+}
