@@ -123,7 +123,7 @@ statusbar5.on(:start) do
   end
 end
 
-timer = Bomber::Timer.new("../image/clear.png", 10, 15, 0, 300)
+timer = Bomber::Timer.new("../image/clear.png", 10, 15, 0, 30)
 timer.on(:start) do
   loop do
     self.time_status
