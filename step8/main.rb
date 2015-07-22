@@ -2,6 +2,8 @@ require_relative  "./bomber"
 
 Window.height += 64
 
+$score = 0
+
 $all_obj = Array.new
 $hit_obj = Array.new
 
