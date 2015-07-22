@@ -2,6 +2,8 @@ require_relative  "./bomber"
 
 Window.height += 64
 
+$score = 0
+
 $all_obj = Array.new
 $hit_obj = Array.new
 
@@ -121,9 +123,16 @@ statusbar5.on(:start) do
   end
 end
 
-statusbar6 = Bomber::Statusbar.new("../image/clear.png", 9, 15, 0)
-statusbar6.on(:start) do
+timer = Bomber::Timer.new("../image/clear.png", 10, 15, 0, 30)
+timer.on(:start) do
   loop do
     self.time_status
+  end
+end
+
+score = Bomber::Score.new("../image/clear.png", 16, 15, 0)
+score.on(:start) do
+  loop do
+    self.score_status
   end
 end
