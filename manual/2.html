@@ -16,7 +16,7 @@
 div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { margin-left: 50px; line-height: 100%; }
+table.sourceCode { width: 100%; line-height: 100%; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
 code > span.kw { color: #007020; font-weight: bold; }
@@ -36,9 +36,9 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </head>
 <body>
 <h1>２．はじめてのプログラミング</h1>
-<p>ここではパソコン上でプログラミングをおこなうために必要な操作について説明していきます。</p>
+<p>まず最初に、パソコン上でプログラミングをおこなうために必要な基本的な操作方法について説明します。</p>
 <h2>キーボード</h2>
-<p>プログラミングではキーボードでさまざまな文字を入力します。<br />それぞれの文字の入力方法について説明します。</p>
+<p>プログラミングではキーボードでさまざまな文字を入力します。<br />それぞれの文字の入力方法は以下です。</p>
 <ul>
 <li><p>全角・半角入力を切り替えます<br /> <img src="images/keyboard/key32.png" /></p></li>
 <li><p>カーソルの前の文字を削除します<br /> <img src="images/keyboard/key28.png" /></p></li>
@@ -208,7 +208,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </table></li>
 </ul>
 <h2 class="break">エディタ</h2>
-<p>パソコン上で文字のみのファイル（テキストファイル）を作成、編集、保存するためのソフトウェアのことです。<br />一般的に、文字（テキスト）の入力、削除、コピー、貼り付け、検索、置換、整形などの機能を備えています。<br />今回は「Atom」というテキストエディタを使ってプログラムを作成します。</p>
+<p>パソコン上で文字（テキスト）のみのファイル（テキストファイルと呼びます）を作成、編集、保存するためのソフトウェアのことです。一般的に、テキストの入力、削除、コピー、貼り付け、検索、置換、整形などの機能を備えています。<br />プログラムも、このエディタを使って作成します。今回は「Atom」というエディタを使います。</p>
 <h3>エディタの起動</h3>
 <ol>
 <li><p>「スタート」をクリックします<br /> <img src="images/image03.png" /></p></li>
@@ -218,7 +218,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><p>「atom.exe」をダブルクリックすると、テキストエディタ「Atom」が起動します</p></li>
 </ol>
 <h3>テキストファイルの保存</h3>
-<p>エディタで何か文字を入力した場合は、ファイルとして保存する必要があります。<br />保存は以下の方法でおこないます。</p>
+<p>エディタで何か文字を入力した場合は、ファイルとして保存する必要があります。<br />ファイルの保存は以下の方法でおこないます。</p>
 <ol>
 <li><p>何か文字を入力します<br /> <img src="images/image01.png" /></p></li>
 <li><p>「ファイル」メニューをクリックします<br /> <img src="images/image08.png" /></p></li>
@@ -227,7 +227,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><p>エクスプローラーで保存されたファイルを確認することができます</p></li>
 </ol>
 <h2 class="break">コマンドプロンプト</h2>
-<p>コンピュータに直接命令を出すことができるソフトウェアのことです。<br />コンピュータに出す命令のことを「コマンド」と呼びます。</p>
+<p>コンピュータに直接命令を出すことができるソフトウェアのことです。<br />コンピュータに出す命令のことを「コマンド」と呼びます。<br />プログラムの実行は、このコマンドプロンプトを使っておこないます。</p>
 <h3>コマンドプロンプトの使い方</h3>
 <ol>
 <li><p>「スタート」をクリックします<br /> <img src="images/image03.png" /></p></li>
@@ -237,8 +237,8 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><p>以下のようにコマンドを入力し、エンターキーを押すとコマンドが実行されます（「help」コマンドは、一般的なコマンドの一覧を表示するコマンドです）</p>
 <pre><code>help</code></pre></li>
 </ol>
-<h2 class="break">最初のプログラム「Hello World」</h2>
-<p>エディタとコマンドプロンプトを使って最初のプログラムを書いて実行してみよう。</p>
+<h2 class="break" id="hello-world">最初のプログラム「Hello World」</h2>
+<p>エディタを使って最初のプログラムを作ってみよう。<br />プログラムを作成したら、コマンドプロンプトを使って実行してみよう。</p>
 <ol>
 <li><p>エディタを開きます</p></li>
 <li><p>以下のようにエディタに入力します</p>
