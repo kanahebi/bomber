@@ -16,7 +16,7 @@
 div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { margin-left: 50px; line-height: 100%; }
+table.sourceCode { width: 100%; line-height: 100%; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
 code > span.kw { color: #007020; font-weight: bold; }
@@ -47,9 +47,8 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li>キーボードやマウスを使ったキャラクターの動かし方を決めよう</li>
 <li>プログラムの構成を考えよう</li>
 </ul>
-<h2 class="break">今回のゲーム</h2>
-<p>主人公を操作して敵を倒すゲームです。<br />敵をすべて倒すとクリアです。</p>
-<p>ブロックや、ドアなどの障害物があります。</p>
+<h2 class="break">今回のゲームの概要</h2>
+<p>主人公を操作して敵を倒すゲームです。敵をすべて倒すとクリアです。<br />ブロックや、ドアなどの障害物があります。</p>
 <p><img src="images/capture/stepa.png" /></p>
 <ul>
 <li>登場人物</li>
@@ -60,15 +59,14 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><img src="images/image14.png" /> 障害物を壊す敵</li>
 <li><img src="images/image15.png" /> 遠距離攻撃をする敵</li>
 </ul>
-<h3 class="break">プログラムの作成</h3>
+<h2 class="break">プログラムの作成手順と実行</h2>
 <p>設計ができたら、実際にプログラムを作成していきます。<br />ソフトウェアはプログラムが書かれたいくつものファイルによって構成されています。</p>
 <ol>
 <li><p>エクスプローラで確認してみよう。</p></li>
 <li><p>エディタで『main.rb』を開いてみよう。プログラムが書かれていることがわかります。</p></li>
 <li><p>プログラムは <strong>半角英数字と記号</strong> で書きます。全角と半角に気をつけよう。また、大文字、小文字も区別するので注意しよう。</p></li>
-<li><p>何かプログラムを書いたら、必ず保存を実行しよう。また、ファイル名には半角英数字を使うことに気をつけよう。</p></li>
+<li><p>何かプログラムを書いたら、必ず保存をしよう。また、ファイル名には半角英数字を使うことに気をつけよう。</p></li>
 </ol>
-<h3>ソフトウェアの実行</h3>
 <p>作成したソフトウェアを実行するには、コマンドプロンプトを使います。エクスプローラでダブルクリックするのではありません。<br />コマンドプロンプトを開いて、以下の文字列（コマンドと呼びます）を入力しエンターキーを押すと、プログラムの実行がはじまります。</p>
 <pre><code>ruby main.rb</code></pre>
 <p>最初は何も反応がありませんが、プログラムを徐々に追加していくとゲームとして動くようになります。</p>
@@ -784,7 +782,9 @@ player = <span class="dt">Bomber</span>::<span class="dt">Player</span>.new(<spa
 <p>以下のようなウィンドウが開いて、スペースキーを押したら主人公が攻撃するようになれば、ステップ5は終了です。</p>
 <p><img src="images/capture/step6.png" /></p>
 <p>ウィンドウが開かない場合はプログラムが間違っているので見直しましょう。<br />コマンドプロンプトにエラーが出ているかもしれないので、確認してみましょう。</p>
-<h3 class="break" id="6.">ステップ6.ゲームクリアとゲームオーバー</h3>
+
+<!--
+<h3 id="6.">ステップ6.ゲームクリアとゲームオーバー</h3>
 <h4 id="bombergame_clear.rb">bomber/game_clear.rb</h4>
 <p>ゲームクリアの画面を作ります。<br />エディタで新規作成を選択して、新しいファイルを作ります。<br />以下のようにプログラムを入力し、bomberディレクトリに『game_clear.rb』として保存します。</p>
 <div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
@@ -821,7 +821,7 @@ player = <span class="dt">Bomber</span>::<span class="dt">Player</span>.new(<spa
     <span class="kw">end</span>
   <span class="kw">end</span>
 <span class="kw">end</span></code></pre></td></tr></table></div>
-<h4 id="6.player">bomber/player.rb</h4>
+<h4 id="bomberplayer.rb-3">bomber/player.rb</h4>
 <p>主人公が攻撃してすべての敵がいなくなったらゲームクリア、主人公が攻撃を受けたらゲームオーバーを表示するように処理を追加します。<br />『player.rb』をエディタで開いて、以下となるようにプログラムを変更してください。</p>
 <div class="sourceCode" startFrom="15"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>15
 16
@@ -882,7 +882,7 @@ player = <span class="dt">Bomber</span>::<span class="dt">Player</span>.new(<spa
 <p>以下のようなウィンドウが開いて、ゲームクリア、ゲームオーバーが確認できたら、ステップ6は終了です。</p>
 <p><img src="images/capture/step7.png" /></p>
 <p>ウィンドウが開かない場合はプログラムが間違っているので見直しましょう。<br />コマンドプロンプトにエラーが出ているかもしれないので、確認してみましょう。</p>
-<h3 class="break" id="7.">ステップ7.敵のバリエーションを増やす</h3>
+<h3 id="7.">ステップ7.敵のバリエーションを増やす</h3>
 <h4 id="bomberenemy_hammer.rb">bomber/enemy_hammer.rb</h4>
 <h4 id="bomberenemy_shooter.rb">bomber/enemy_shooter.rb</h4>
 <h4 id="bomberenemy_trace.rb">bomber/enemy_trace.rb</h4>
@@ -925,7 +925,7 @@ player = <span class="dt">Bomber</span>::<span class="dt">Player</span>.new(<spa
 <p>以下のようなウィンドウが開いて、敵が増えていることが確認できれば、ステップ7は終了です。</p>
 <p><img src="images/capture/step8.png" /></p>
 <p>ウィンドウが開かない場合はプログラムが間違っているので見直しましょう。<br />コマンドプロンプトにエラーが出ているかもしれないので、確認してみましょう。</p>
-<h3 class="break" id="8.">ステップ8.得点を表示する</h3>
+<h3 id="8.">ステップ8.得点を表示する</h3>
 <h4 id="bomberstatusbar.rb">bomber/statusbar.rb</h4>
 <p>ステータスバーに残りの敵の数を表示する機能を作ります。<br />エディタで新規作成を選択して、新しいファイルを作ります。<br />以下のようにプログラムを入力し、bomberディレクトリに『statusbar.rb』として保存します。</p>
 <div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
@@ -1141,7 +1141,7 @@ score.on(<span class="st">:start</span>) <span class="kw">do</span>
 <p>以下のようなウィンドウが開いて、ステータスバーが正常に表示されることが確認できれば、ステップ8は終了です。</p>
 <p><img src="images/capture/step9.png" /></p>
 <p>ウィンドウが開かない場合はプログラムが間違っているので見直しましょう。<br />コマンドプロンプトにエラーが出ているかもしれないので、確認してみましょう。</p>
-<h3 class="break" id="9.">ステップ9.ブロックの設定画面</h3>
+<h3 id="9.">ステップ9.ブロックの設定画面</h3>
 <h4 id="bomberback.rb">bomber/back.rb</h4>
 <h4 id="config.rb">config.rb</h4>
 <p>プログラムを保存したら、コマンドプロンプトを開いて、以下のコマンドを入力し、エンターキーを押してみましょう。</p>
@@ -1150,5 +1150,6 @@ score.on(<span class="st">:start</span>) <span class="kw">do</span>
 <p><img src="images/capture/stepa.png" /></p>
 <p>ウィンドウが開かない場合はプログラムが間違っているので見直しましょう。<br />コマンドプロンプトにエラーが出ているかもしれないので、確認してみましょう。</p>
 <p>ここまででゲームの作成は完了です。</p>
+-->
 </body>
 </html>
