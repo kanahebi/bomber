@@ -16,7 +16,7 @@
 div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
+table.sourceCode { margin-left: 50px; line-height: 100%; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
 code > span.kw { color: #007020; font-weight: bold; }
@@ -226,17 +226,27 @@ player.on(<span class="st">:start</span>) <span class="kw">do</span>
   <span class="kw">end</span>
 <span class="kw">end</span></code></pre></td></tr></table></div>
 <p>ここで、</p>
-<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby">    <span class="kw">def</span> costume_lists
+<div class="sourceCode" startFrom="8"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>8
+9
+10
+11
+12
+13
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">    <span class="kw">def</span> costume_lists
       [<span class="st">&quot;../image/up.png&quot;</span>,
        <span class="st">&quot;../image/down.png&quot;</span>,
        <span class="st">&quot;../image/left.png&quot;</span>,
        <span class="st">&quot;../image/right.png&quot;</span>]
-    <span class="kw">end</span></code></pre></div>
+    <span class="kw">end</span></code></pre></td></tr></table></div>
 <p>は、ガイドに使用する画像を指定する処理です。</p>
-<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby">      <span class="kw">case</span> agl
+<div class="sourceCode" startFrom="18"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>18
+19
+20
+21
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">      <span class="kw">case</span> agl
       <span class="kw">when</span> <span class="st">:up</span>
         <span class="dv">self</span>.y -= <span class="dv">4</span>
-        <span class="dv">self</span>.image = <span class="ot">@costumes</span>[<span class="dv">0</span>]</code></pre></div>
+        <span class="dv">self</span>.image = <span class="ot">@costumes</span>[<span class="dv">0</span>]</code></pre></td></tr></table></div>
 <p>は、主人公の位置からみて、どの位置にガイドを表示するかを指定する処理です。xやyは座標です。</p>
 <h4 id="bomberplayer.rb-1">bomber/player.rb</h4>
 <p>上記で作成したガイドを主人公のまわりに表示されるようにします。<br />キーボードが押されたら、押された方向に合わせてガイドが表示されるようにします。<br />以下となるように、『player.rb』にプログラムを追加します。</p>
@@ -325,9 +335,12 @@ player.on(<span class="st">:start</span>) <span class="kw">do</span>
 
 <span class="kw">end</span></code></pre></td></tr></table></div>
 <p>ここで、</p>
-<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby">  on(<span class="st">:key_down</span>, <span class="dt">K_RIGHT</span>) <span class="kw">do</span>
+<div class="sourceCode" startFrom="18"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>18
+19
+20
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">  on(<span class="st">:key_down</span>, <span class="dt">K_RIGHT</span>) <span class="kw">do</span>
     <span class="dv">self</span>.move(<span class="st">:right</span>)
-  <span class="kw">end</span></code></pre></div>
+  <span class="kw">end</span></code></pre></td></tr></table></div>
 <p>は、キーボードの「→」が押されたとき、主人公を右に動かすという処理です。</p>
 <p>プログラムを保存したら、コマンドプロンプトを開いて、以下のコマンドを入力し、エンターキーを押してみましょう。</p>
 <pre><code>ruby main.rb</code></pre>
@@ -437,7 +450,7 @@ player.on(<span class="st">:start</span>) <span class="kw">do</span>
   <span class="kw">end</span>
 <span class="kw">end</span></code></pre></td></tr></table></div>
 <h4 id="bomberdoor.rb">bomber/door.rb</h4>
-<p>ブロックだけでなく、主人公が開けることができるドアオブジェクトも作りましょう。<br />エディタで新規作成を選択して、新しいファイルを作ります。<br />以下のようにプログラムを入力し、bomberディレクトリに『door.rb』として保存します。</p>
+<p>ブロックだけでなく、キャラクターが開けることができるドアも作りましょう。<br />エディタで新規作成を選択して、新しいファイルを作ります。<br />以下のようにプログラムを入力し、bomberディレクトリに『door.rb』として保存します。</p>
 <div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
 2
 3
@@ -572,6 +585,30 @@ player = <span class="dt">Bomber</span>::<span class="dt">Player</span>.new(<spa
 <span class="dt">$hit_obj</span> &lt;&lt; doors
 <span class="dt">$hit_obj</span> &lt;&lt; player
 <span class="dt">$hit_obj</span>.flatten!</code></pre></td></tr></table></div>
+<p>ここで、</p>
+<div class="sourceCode" startFrom="10"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>10
+11
+12
+13
+14
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="dt">$blocks</span> = <span class="dt">Array</span>.new
+datas = <span class="dt">YAML</span>.load_file(<span class="dt">File</span>.expand_path(<span class="st">&quot;../config.yml&quot;</span>, <span class="dv">__FILE__</span>))
+datas.each <span class="kw">do</span> |data|
+  <span class="dt">$blocks</span> &lt;&lt; block =  <span class="dt">Bomber</span>::<span class="dt">Block</span>.new(data)
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<p>は、ブロックオブジェクトを読み込んでいる処理です。</p>
+<div class="sourceCode" startFrom="16"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>16
+17
+18
+19
+20
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">doors = <span class="dt">Array</span>.new
+doors &lt;&lt; door1 = <span class="dt">Bomber</span>::<span class="dt">Door</span>.new( <span class="dv">8</span>,  <span class="dv">4</span>, <span class="st">:up</span>)
+doors &lt;&lt; door2 = <span class="dt">Bomber</span>::<span class="dt">Door</span>.new( <span class="dv">6</span>,  <span class="dv">6</span>, <span class="st">:left</span>)
+doors &lt;&lt; door3 = <span class="dt">Bomber</span>::<span class="dt">Door</span>.new(<span class="dv">10</span>,  <span class="dv">6</span>, <span class="st">:right</span>)
+doors &lt;&lt; door4 = <span class="dt">Bomber</span>::<span class="dt">Door</span>.new( <span class="dv">8</span>,  <span class="dv">8</span>, <span class="st">:down</span>)</code></pre></td></tr></table></div>
+<p>は、ドアオブジェクトを読み込んでいる処理です。</p>
+<p>このように、別のファイルで作成したプログラムを組み込みながらソフトウェアは作られていきます。</p>
 <p>プログラムを保存したら、コマンドプロンプトを開いて、以下のコマンドを入力し、エンターキーを押してみましょう。</p>
 <pre><code>ruby main.rb</code></pre>
 <p>以下のようなウィンドウが開けば、ステップ3は終了です。<br />念のため、主人公がキーボードで操作できるかも確認してみましょう。</p>
@@ -782,9 +819,7 @@ player = <span class="dt">Bomber</span>::<span class="dt">Player</span>.new(<spa
 <p>以下のようなウィンドウが開いて、スペースキーを押したら主人公が攻撃するようになれば、ステップ5は終了です。</p>
 <p><img src="images/capture/step6.png" /></p>
 <p>ウィンドウが開かない場合はプログラムが間違っているので見直しましょう。<br />コマンドプロンプトにエラーが出ているかもしれないので、確認してみましょう。</p>
-
-<!--
-<h3 id="6.">ステップ6.ゲームクリアとゲームオーバー</h3>
+<h3 class="break" id="6.">ステップ6.ゲームクリアとゲームオーバー</h3>
 <h4 id="bombergame_clear.rb">bomber/game_clear.rb</h4>
 <p>ゲームクリアの画面を作ります。<br />エディタで新規作成を選択して、新しいファイルを作ります。<br />以下のようにプログラムを入力し、bomberディレクトリに『game_clear.rb』として保存します。</p>
 <div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
@@ -823,7 +858,103 @@ player = <span class="dt">Bomber</span>::<span class="dt">Player</span>.new(<spa
 <span class="kw">end</span></code></pre></td></tr></table></div>
 <h4 id="bomberplayer.rb-3">bomber/player.rb</h4>
 <p>主人公が攻撃してすべての敵がいなくなったらゲームクリア、主人公が攻撃を受けたらゲームオーバーを表示するように処理を追加します。<br />『player.rb』をエディタで開いて、以下となるようにプログラムを変更してください。</p>
-<div class="sourceCode" startFrom="15"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>15
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">module</span> <span class="dt">Bomber</span>
+  <span class="kw">class</span> <span class="dt">Player</span> &lt; <span class="dt">Bomber</span>::<span class="dt">Character</span>
+    <span class="ot">attr_accessor</span> <span class="st">:guide</span>, <span class="st">:agl</span>
+    <span class="kw">def</span> initialize(x, y, angle)
+      <span class="dv">super</span>(costume_lists, x, y, angle)
+      <span class="ot">@agl</span> = <span class="st">:right</span>
+      <span class="ot">@guide</span> = <span class="dt">Bomber</span>::<span class="dt">Guide</span>.new(<span class="dv">self</span>)
+      <span class="ot">@guide</span>.trace
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> costume_lists
+      [<span class="st">&quot;../image/hito.png&quot;</span>]
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> atack
+      <span class="dv">super</span>
+      <span class="kw">if</span> all_enemy.empty?
+        sleep <span class="dv">3</span>
+        exit
+      <span class="kw">end</span>
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> move(move_angle=<span class="st">:right</span>)
+      <span class="kw">if</span> <span class="dv">self</span>.agl == move_angle
+        <span class="dv">self</span>.send(<span class="st">&quot;move_</span><span class="ot">#{</span>move_angle.to_s<span class="ot">}</span><span class="st">&quot;</span>.to_sym)
+        sleep <span class="fl">0.1</span>
+      <span class="kw">end</span>
+      angle_shift(move_angle)
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> lose
+      <span class="dv">super</span>
+      sleep <span class="dv">3</span>
+      exit
+    <span class="kw">end</span>
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<p>プログラムを保存したら、コマンドプロンプトを開いて、以下のコマンドを入力し、エンターキーを押してみましょう。</p>
+<pre><code>ruby main.rb</code></pre>
+<p>以下のようなウィンドウが開いて、ゲームクリア、ゲームオーバーが確認できたら、ステップ6は終了です。</p>
+<p><img src="images/capture/step7.png" /></p>
+<p>ウィンドウが開かない場合はプログラムが間違っているので見直しましょう。<br />コマンドプロンプトにエラーが出ているかもしれないので、確認してみましょう。</p>
+<h3 class="break" id="7.">ステップ7.敵のバリエーションを増やす</h3>
+<h4 id="bomberenemy_trace.rb">bomber/enemy_trace.rb</h4>
+<p>追いかけてくる敵を作ります。<br />エディタで新規作成を選択して、新しいファイルを作ります。<br />以下のようにプログラムを入力し、bomberディレクトリに『enemy_trace.rb』として保存します。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
 16
 17
 18
@@ -850,46 +981,559 @@ player = <span class="dt">Bomber</span>::<span class="dt">Player</span>.new(<spa
 39
 40
 41
-</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby">    <span class="kw">def</span> atack
-      <span class="dv">super</span>
-      <span class="kw">if</span> all_enemy.empty?
-        sleep <span class="dv">1</span>
-        gameclear = <span class="dt">Bomber</span>::<span class="dt">GameClear</span>.new
-        gameclear.z = <span class="dv">10</span>
-        sleep <span class="dv">3</span>
-        exit
-      <span class="kw">end</span>
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">module</span> <span class="dt">Bomber</span>
+  <span class="kw">class</span> <span class="dt">EnemyTrace</span> &lt; <span class="dt">Bomber</span>::<span class="dt">Character</span>
+    <span class="ot">attr_accessor</span> <span class="st">:guide</span>, <span class="st">:agl</span>
+    <span class="kw">def</span> initialize(x, y, angle, target=<span class="dv">nil</span>)
+      <span class="dv">super</span>(costume_lists, x, y, angle)
+      <span class="ot">@score</span> = <span class="dv">5</span>
+      <span class="ot">@agl</span> = <span class="st">:right</span>
+      <span class="ot">@target</span> = target
+      <span class="ot">@guide</span> = <span class="dt">Bomber</span>::<span class="dt">Guide</span>.new(<span class="dv">self</span>)
+      <span class="ot">@guide</span>.trace
     <span class="kw">end</span>
 
-    <span class="kw">def</span> move(move_angle=<span class="st">:right</span>)
-      <span class="kw">if</span> <span class="dv">self</span>.agl == move_angle
-        <span class="dv">self</span>.send(<span class="st">&quot;move_</span><span class="ot">#{</span>move_angle.to_s<span class="ot">}</span><span class="st">&quot;</span>.to_sym)
-        sleep <span class="fl">0.1</span>
-      <span class="kw">end</span>
-      angle_shift(move_angle)
+    <span class="kw">def</span> costume_lists
+      [<span class="st">&quot;../image/ene2.png&quot;</span>]
     <span class="kw">end</span>
 
-    <span class="kw">def</span> lose
+    <span class="kw">def</span> tracking
+      <span class="kw">return</span> <span class="kw">unless</span> <span class="ot">@target</span>
+      diff_x = <span class="ot">@target</span>.current_x_block - <span class="dv">self</span>.current_x_block
+      diff_y = <span class="ot">@target</span>.current_y_block - <span class="dv">self</span>.current_y_block
+      before_x = <span class="dv">self</span>.current_x_block
+      before_y = <span class="dv">self</span>.current_y_block
+      <span class="kw">if</span> diff_x.abs &gt; diff_y.abs
+        action(<span class="st">:move_right</span>) <span class="kw">if</span> diff_x &gt; <span class="dv">0</span>
+        action(<span class="st">:move_left</span>)  <span class="kw">if</span> diff_x &lt; <span class="dv">0</span>
+        <span class="kw">if</span> <span class="dv">self</span>.current_x_block == before_x
+          action(<span class="st">:move_down</span>) <span class="kw">if</span> diff_y &gt; <span class="dv">0</span>
+          action(<span class="st">:move_up</span>)   <span class="kw">if</span> diff_y &lt; <span class="dv">0</span>
+        <span class="kw">end</span>
+      <span class="kw">else</span>
+        action(<span class="st">:move_down</span>) <span class="kw">if</span> diff_y &gt; <span class="dv">0</span>
+        action(<span class="st">:move_up</span>)   <span class="kw">if</span> diff_y &lt; <span class="dv">0</span>
+        <span class="kw">if</span> <span class="dv">self</span>.current_y_block == before_y
+          action(<span class="st">:move_right</span>) <span class="kw">if</span> diff_x &gt; <span class="dv">0</span>
+          action(<span class="st">:move_left</span>)  <span class="kw">if</span> diff_x &lt; <span class="dv">0</span>
+        <span class="kw">end</span>
+      <span class="kw">end</span>
+      atack <span class="kw">if</span> rand(<span class="dv">10</span>) == <span class="dv">0</span>
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> action(act)
+      sleep <span class="fl">0.6</span>
+      <span class="dv">self</span>.send(act)
+      sleep <span class="fl">0.2</span>
+      <span class="dv">self</span>.send(act)
+      reject_half
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> auto
       <span class="dv">super</span>
-      sleep <span class="dv">1</span>
-      gameover = <span class="dt">Bomber</span>::<span class="dt">GameOver</span>.new
-      gameover.z = <span class="dv">10</span>
-      sleep <span class="dv">3</span>
-      exit
-    <span class="kw">end</span></code></pre></td></tr></table></div>
-<p>プログラムを保存したら、コマンドプロンプトを開いて、以下のコマンドを入力し、エンターキーを押してみましょう。</p>
-<pre><code>ruby main.rb</code></pre>
-<p>以下のようなウィンドウが開いて、ゲームクリア、ゲームオーバーが確認できたら、ステップ6は終了です。</p>
-<p><img src="images/capture/step7.png" /></p>
-<p>ウィンドウが開かない場合はプログラムが間違っているので見直しましょう。<br />コマンドプロンプトにエラーが出ているかもしれないので、確認してみましょう。</p>
-<h3 id="7.">ステップ7.敵のバリエーションを増やす</h3>
-<h4 id="bomberenemy_hammer.rb">bomber/enemy_hammer.rb</h4>
-<h4 id="bomberenemy_shooter.rb">bomber/enemy_shooter.rb</h4>
-<h4 id="bomberenemy_trace.rb">bomber/enemy_trace.rb</h4>
+      tracking
+    <span class="kw">end</span>
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
 <h4 id="bomberenemy_wizard.rb">bomber/enemy_wizard.rb</h4>
+<p>障害物を作る敵を作ります。<br />エディタで新規作成を選択して、新しいファイルを作ります。<br />以下のようにプログラムを入力し、bomberディレクトリに『enemy_wizard.rb』として保存します。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby" ><span class="kw">module</span> <span class="dt">Bomber</span>
+  <span class="kw">class</span> <span class="dt">EnemyWizard</span> &lt; <span class="dt">Bomber</span>::<span class="dt">Character</span>
+    <span class="ot">attr_accessor</span> <span class="st">:guide</span>, <span class="st">:agl</span>
+    <span class="kw">def</span> initialize(x, y, angle, delay=<span class="dv">0</span>)
+      <span class="dv">super</span>(costume_lists, x, y, angle)
+      <span class="ot">@score</span> = <span class="dv">5</span>
+      <span class="ot">@agl</span> = <span class="st">:right</span>
+      <span class="ot">@delay</span> = delay
+      <span class="ot">@guide</span> = <span class="dt">Bomber</span>::<span class="dt">Guide</span>.new(<span class="dv">self</span>)
+      <span class="ot">@guide</span>.trace
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> costume_lists
+      [<span class="st">&quot;../image/wiz.png&quot;</span>]
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> action_list
+      [<span class="st">:up</span>, <span class="st">:down</span>, <span class="st">:right</span>, <span class="st">:left</span>]
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> block_list
+      [<span class="st">&quot;stone&quot;</span>, <span class="st">&quot;brick&quot;</span>, <span class="st">&quot;wood&quot;</span>]
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> auto
+      <span class="dv">super</span>
+      generate_block
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> generate_block
+      num = rand(<span class="dv">4</span>)
+      sleep <span class="ot">@delay</span>
+      sleep <span class="fl">0.3</span>
+      <span class="dv">self</span>.send(<span class="st">&quot;move_</span><span class="ot">#{</span>action_list[num].to_s<span class="ot">}</span><span class="st">&quot;</span>.to_sym)
+      sleep <span class="fl">0.2</span>
+      <span class="dv">self</span>.send(<span class="st">&quot;move_</span><span class="ot">#{</span>action_list[num].to_s<span class="ot">}</span><span class="st">&quot;</span>.to_sym)
+      reject_half
+      atack <span class="kw">if</span> rand(<span class="dv">7</span>) == <span class="dv">0</span>
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> atack
+      <span class="kw">if</span> next_char(next_block, <span class="dv">true</span>)
+        <span class="dv">super</span>
+      <span class="kw">else</span>
+        say(message: <span class="st">&quot;エイ！&quot;</span>)
+        num = rand(<span class="dv">4</span>)
+        <span class="kw">if</span> num &lt; <span class="dv">3</span>
+          obj=<span class="dt" style="font-size: smaller;">Bomber</span>::<span class="dt" style="font-size: smaller;">Block</span>.new(<span class="st">&quot;x&quot;</span>=&gt;<span style="font-size: smaller;">next_block</span>[<span class="dv">0</span>],<span class="st">&quot;y&quot;</span>=&gt;<span class="dt" style="font-size: smaller;">next_block</span>[<span class="dv">1</span>],<span class="st">&quot;col&quot;</span>=&gt;<span class="dt" style="font-size: smaller;">block_list</span>[num])  
+          <span class="dt">$blocks</span> &lt;&lt; obj
+        <span class="kw">else</span>
+          obj = <span class="dt">Bomber</span>::<span class="dt">Door</span>.new(*next_block, <span class="dv">self</span>.agl)
+        <span class="kw">end</span>
+        <span class="dt">$hit_obj</span> &lt;&lt; obj
+        <span class="dt">$all_obj</span> &lt;&lt; obj
+        sleep <span class="fl">0.5</span>
+        say(message: <span class="st">&quot;&quot;</span>)
+      <span class="kw">end</span>
+    <span class="kw">end</span>
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h4 id="bomberenemy_hammer.rb">bomber/enemy_hammer.rb</h4>
+<p>障害物を壊す敵を作ります。<br />エディタで新規作成を選択して、新しいファイルを作ります。<br />以下のようにプログラムを入力し、bomberディレクトリに『enemy_hammer.rb』として保存します。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">module</span> <span class="dt">Bomber</span>
+  <span class="kw">class</span> <span class="dt">EnemyHammer</span> &lt; <span class="dt">Bomber</span>::<span class="dt">Character</span>
+    <span class="ot">attr_accessor</span> <span class="st">:guide</span>, <span class="st">:agl</span>
+    <span class="kw">def</span> initialize(x, y, angle, delay=<span class="dv">0</span>)
+      <span class="dv">super</span>(costume_lists, x, y, angle)
+      <span class="ot">@score</span> = <span class="dv">5</span>
+      <span class="ot">@agl</span> = <span class="st">:right</span>
+      <span class="ot">@delay</span> = delay
+      <span class="ot">@guide</span> = <span class="dt">Bomber</span>::<span class="dt">Guide</span>.new(<span class="dv">self</span>)
+      <span class="ot">@guide</span>.trace
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> costume_lists
+      [<span class="st">&quot;../image/hun.png&quot;</span>]
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> action_list
+      [<span class="st">:up</span>, <span class="st">:down</span>, <span class="st">:right</span>, <span class="st">:left</span>]
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> block_list
+      [<span class="st">&quot;stone&quot;</span>, <span class="st">&quot;brick&quot;</span>, <span class="st">&quot;wood&quot;</span>]
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> auto
+      <span class="dv">super</span>
+      break_block
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> break_block
+      num = rand(<span class="dv">4</span>)
+      sleep <span class="ot">@delay</span>
+      sleep <span class="fl">0.3</span>
+      <span class="dv">self</span>.send(<span class="st">&quot;move_</span><span class="ot">#{</span>action_list[num].to_s<span class="ot">}</span><span class="st">&quot;</span>.to_sym)
+      sleep <span class="fl">0.2</span>
+      <span class="dv">self</span>.send(<span class="st">&quot;move_</span><span class="ot">#{</span>action_list[num].to_s<span class="ot">}</span><span class="st">&quot;</span>.to_sym)
+      reject_half
+      atack <span class="kw">if</span> rand(<span class="dv">4</span>) == <span class="dv">0</span>
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> atack
+      target = next_char(next_block, <span class="dv">true</span>)
+      <span class="kw">return</span> <span class="kw">unless</span> target
+      <span class="kw">if</span> target.class == <span class="dt">Bomber</span>::<span class="dt">Block</span> <span class="kw">or</span> target.class == <span class="dt">Bomber</span>::<span class="dt">Door</span>
+        say(message: <span class="st">&quot;エイ！&quot;</span>)
+        target.destroy
+        sleep <span class="fl">0.5</span>
+        say(message: <span class="st">&quot;&quot;</span>)
+      <span class="kw">else</span>
+        <span class="dv">super</span>
+      <span class="kw">end</span>
+    <span class="kw">end</span>
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
+<h4 id="bomberenemy_shooter.rb">bomber/enemy_shooter.rb</h4>
+<p>遠距離攻撃をする敵を作ります。<br />エディタで新規作成を選択して、新しいファイルを作ります。<br />以下のようにプログラムを入力し、bomberディレクトリに『enemy_shooter.rb』として保存します。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">module</span> <span class="dt">Bomber</span>
+  <span class="kw">class</span> <span class="dt">EnemyShooter</span> &lt; <span class="dt">Bomber</span>::<span class="dt">Character</span>
+    <span class="ot">attr_accessor</span> <span class="st">:guide</span>, <span class="st">:agl</span>
+    <span class="kw">def</span> initialize(x, y, angle, delay=<span class="dv">0</span>)
+      <span class="dv">super</span>(costume_lists, x, y, angle)
+      <span class="ot">@score</span> = <span class="dv">5</span>
+      <span class="ot">@agl</span> = <span class="st">:right</span>
+      <span class="ot">@delay</span> = delay
+      <span class="ot">@guide</span> = <span class="dt">Bomber</span>::<span class="dt">Guide</span>.new(<span class="dv">self</span>)
+      <span class="ot">@guide</span>.trace
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> costume_lists
+      [<span class="st">&quot;../image/bow.png&quot;</span>]
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> action_list
+      [<span class="st">:up</span>, <span class="st">:down</span>, <span class="st">:right</span>, <span class="st">:left</span>]
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> auto
+      <span class="dv">super</span>
+      num = rand(<span class="dv">4</span>)
+      sleep <span class="ot">@delay</span>
+      sleep <span class="fl">0.3</span>
+      <span class="dv">self</span>.send(<span class="st">&quot;move_</span><span class="ot">#{</span>action_list[num].to_s<span class="ot">}</span><span class="st">&quot;</span>.to_sym)
+      sleep <span class="fl">0.2</span>
+      <span class="dv">self</span>.send(<span class="st">&quot;move_</span><span class="ot">#{</span>action_list[num].to_s<span class="ot">}</span><span class="st">&quot;</span>.to_sym)
+      reject_half
+      atack <span class="kw">if</span> rand(<span class="dv">2</span>) == <span class="dv">0</span>
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> shoot
+      arrow = <span class="dt">Bomber</span>::<span class="dt">Arrow</span>.new(<span class="dv">self</span>)
+      arrow.z = <span class="dv">5</span>
+      arrow.on(<span class="st">:start</span>) <span class="kw">do</span>
+        while <span class="dv">self</span>.active <span class="kw">do</span>
+          <span class="dv">self</span>.shoot
+        <span class="kw">end</span>
+      <span class="kw">end</span>
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> atack
+      say(message: <span class="st">&quot;エイ！&quot;</span>)
+      target = next_char(next_block)
+      <span class="kw">if</span> target
+        target.lose
+      <span class="kw">else</span>
+        shoot
+      <span class="kw">end</span>
+      sleep <span class="fl">0.5</span>
+      say(message: <span class="st">&quot;&quot;</span>)
+    <span class="kw">end</span>
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
 <h4 id="bomberarrow.rb">bomber/arrow.rb</h4>
+<p>遠距離攻撃をする敵が使う矢を作ります。<br />エディタで新規作成を選択して、新しいファイルを作ります。<br />以下のようにプログラムを入力し、bomberディレクトリに『arrow.rb』として保存します。</p>
+<div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">module</span> <span class="dt">Bomber</span>
+  <span class="kw">class</span> <span class="dt">Arrow</span> &lt; <span class="dt">Bomber</span>::<span class="dt">Character</span>
+    <span class="kw">def</span> initialize(target)
+      <span class="ot">@target</span> = target
+      <span class="ot">@agl</span> = <span class="ot">@target</span>.agl
+      <span class="dv">super</span>(*set_params, <span class="dv">0</span>)
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> costume_lists
+      [<span class="st">&quot;../image/arrow_up.png&quot;</span>,
+       <span class="st">&quot;../image/arrow_down.png&quot;</span>,
+       <span class="st">&quot;../image/arrow_left.png&quot;</span>,
+       <span class="st">&quot;../image/arrow_right.png&quot;</span>]
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> shoot
+      <span class="kw">return</span> <span class="kw">if</span> <span class="dv">self</span>.vanished?
+      <span class="kw">case</span> <span class="ot">@agl</span>
+      <span class="kw">when</span> <span class="st">:up</span>
+        <span class="ot">@vani</span> = <span class="ot">@init_block</span> - <span class="dv">4</span> == <span class="dv">self</span>.current_y_block
+        <span class="dv">self</span>.y += -<span class="dt">BLOCK</span>/<span class="dv">2</span>
+      <span class="kw">when</span> <span class="st">:down</span>
+        <span class="ot">@vani</span> = <span class="ot">@init_block</span> + <span class="dv">4</span> == <span class="dv">self</span>.current_y_block
+        <span class="dv">self</span>.y += <span class="dt">BLOCK</span>/<span class="dv">2</span>
+      <span class="kw">when</span> <span class="st">:left</span>
+        <span class="ot">@vani</span> = <span class="ot">@init_block</span> - <span class="dv">4</span> == <span class="dv">self</span>.current_x_block
+        <span class="dv">self</span>.x += -<span class="dt">BLOCK</span>/<span class="dv">2</span>
+      <span class="kw">when</span> <span class="st">:right</span>
+        <span class="ot">@vani</span> = <span class="ot">@init_block</span> + <span class="dv">4</span> == <span class="dv">self</span>.current_x_block
+        <span class="dv">self</span>.x += <span class="dt">BLOCK</span>/<span class="dv">2</span>
+      <span class="kw">end</span>
+      <span class="kw">if</span> <span class="dv">self</span>.any_hit?
+        tag = hit_target
+        <span class="kw">if</span> tag.class == <span class="dt">Bomber</span>::<span class="dt">Block</span> <span class="kw">or</span> tag.class == <span class="dt">Bomber</span>::<span class="dt">Door</span>
+          <span class="ot">@vani</span> = <span class="dv">true</span>
+        <span class="kw">elsif</span> tag == <span class="ot">@target</span>
+          <span class="ot">@vani</span> = <span class="dv">false</span>
+        <span class="kw">else</span>
+          <span class="ot">@vani</span> = <span class="dv">true</span>
+          tag.lose
+        <span class="kw">end</span>
+      <span class="kw">end</span>
+      <span class="kw">if</span> <span class="ot">@vani</span>
+        <span class="dv">self</span>.vanish
+        <span class="dv">self</span>.active = <span class="dv">false</span>
+      <span class="kw">end</span>
+      sleep <span class="fl">0.2</span>
+    <span class="kw">end</span>
+
+    <span class="kw">def</span> set_params
+      block_x, block_y = <span class="ot">@target</span>.current_block
+      <span class="kw">case</span> <span class="ot">@agl</span>
+      <span class="kw">when</span> <span class="st">:up</span>
+        block_y<span class="co"># -= 1</span>
+        <span class="ot">@init_block</span> = block_y
+      <span class="kw">when</span> <span class="st">:down</span>
+        block_y<span class="co"># += 1</span>
+        <span class="ot">@init_block</span> = block_y
+      <span class="kw">when</span> <span class="st">:left</span>
+        block_x<span class="co"># -= 1</span>
+        <span class="ot">@init_block</span> = block_x
+      <span class="kw">when</span> <span class="st">:right</span>
+        block_x<span class="co"># += 1</span>
+        <span class="ot">@init_block</span> = block_x
+      <span class="kw">end</span>
+      <span class="kw">return</span> [<span class="st">&quot;../image/arrow_</span><span class="ot">#{@agl</span>.to_s<span class="ot">}</span><span class="st">.png&quot;</span>, block_x, block_y]
+    <span class="kw">end</span>
+  <span class="kw">end</span>
+<span class="kw">end</span></code></pre></td></tr></table></div>
 <h4 id="main.rb-5">main.rb</h4>
-<p>ウィンドウに新しい敵を配置する処理を追加します。<br />『main.rb』をエディタで開いて、以下となるようにプログラムを変更してください。</p>
+<p>ウィンドウに新しい敵を配置する処理を追加します。<br />『main.rb』をエディタで開いて、以下となるようにプログラムを追加してください。</p>
 <div class="sourceCode" startFrom="33"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>33
 34
 35
@@ -905,6 +1549,7 @@ player = <span class="dt">Bomber</span>::<span class="dt">Player</span>.new(<spa
 45
 46
 47
+48
 </pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="dt">$enemy</span> &lt;&lt; <span class="dt">Bomber</span>::<span class="dt">EnemyNormal</span>.new(<span class="dv">18</span>,  <span class="dv">1</span>, <span class="dv">0</span>,   <span class="dv">0</span>)
 <span class="dt">$enemy</span> &lt;&lt; <span class="dt">Bomber</span>::<span class="dt">EnemyTrace</span>.new(  <span class="dv">5</span>, <span class="dv">11</span>, <span class="dv">0</span>, player)
 <span class="dt">$enemy</span> &lt;&lt; <span class="dt">Bomber</span>::<span class="dt">EnemyTrace</span>.new(  <span class="dv">7</span>,  <span class="dv">3</span>, <span class="dv">0</span>, player)
@@ -919,13 +1564,14 @@ player = <span class="dt">Bomber</span>::<span class="dt">Player</span>.new(<spa
 <span class="dt">$enemy</span> &lt;&lt; <span class="dt">Bomber</span>::<span class="dt">EnemyHammer</span>.new(<span class="dv">10</span>,  <span class="dv">3</span>, <span class="dv">0</span>)
 <span class="dt">$enemy</span> &lt;&lt; <span class="dt">Bomber</span>::<span class="dt">EnemyHammer</span>.new(<span class="dv">10</span>, <span class="dv">13</span>, <span class="dv">0</span>)
 
-<span class="dt">$enemy</span>.each <span class="kw">do</span> |ene|</code></pre></td></tr></table></div>
+<span class="dt">$enemy</span>.each <span class="kw">do</span> |ene|
+…</code></pre></td></tr></table></div>
 <p>プログラムを保存したら、コマンドプロンプトを開いて、以下のコマンドを入力し、エンターキーを押してみましょう。</p>
 <pre><code>ruby main.rb</code></pre>
 <p>以下のようなウィンドウが開いて、敵が増えていることが確認できれば、ステップ7は終了です。</p>
 <p><img src="images/capture/step8.png" /></p>
 <p>ウィンドウが開かない場合はプログラムが間違っているので見直しましょう。<br />コマンドプロンプトにエラーが出ているかもしれないので、確認してみましょう。</p>
-<h3 id="8.">ステップ8.得点を表示する</h3>
+<h3 class="break" id="8.">ステップ8.得点を表示する</h3>
 <h4 id="bomberstatusbar.rb">bomber/statusbar.rb</h4>
 <p>ステータスバーに残りの敵の数を表示する機能を作ります。<br />エディタで新規作成を選択して、新しいファイルを作ります。<br />以下のようにプログラムを入力し、bomberディレクトリに『statusbar.rb』として保存します。</p>
 <div class="sourceCode" startFrom="1"><table class="sourceCode ruby numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
@@ -1141,15 +1787,15 @@ score.on(<span class="st">:start</span>) <span class="kw">do</span>
 <p>以下のようなウィンドウが開いて、ステータスバーが正常に表示されることが確認できれば、ステップ8は終了です。</p>
 <p><img src="images/capture/step9.png" /></p>
 <p>ウィンドウが開かない場合はプログラムが間違っているので見直しましょう。<br />コマンドプロンプトにエラーが出ているかもしれないので、確認してみましょう。</p>
-<h3 id="9.">ステップ9.ブロックの設定画面</h3>
-<h4 id="bomberback.rb">bomber/back.rb</h4>
-<h4 id="config.rb">config.rb</h4>
-<p>プログラムを保存したら、コマンドプロンプトを開いて、以下のコマンドを入力し、エンターキーを押してみましょう。</p>
-<pre><code>ruby main.rb</code></pre>
-<p>以下のようなウィンドウが開けば、ステップ9は終了です。</p>
-<p><img src="images/capture/stepa.png" /></p>
-<p>ウィンドウが開かない場合はプログラムが間違っているので見直しましょう。<br />コマンドプロンプトにエラーが出ているかもしれないので、確認してみましょう。</p>
-<p>ここまででゲームの作成は完了です。</p>
--->
+<h2 class="break">ゲームの完成</h2>
+<p>ここまででゲームの作成は終了です。<br />プログラムに手を加えて、自分オリジナルのゲームに仕上げてみよう。</p>
+<ol>
+<li>主人公や敵の画像を変えてみよう。</li>
+<li>主人公や敵の動くスピードを変えてみよう。</li>
+<li>敵を増やしてみよう。</li>
+<li>得点や残り時間を調整してみよう。</li>
+<li>ゲームクリア、ゲームオーバーの条件を変えてみよう。</li>
+<li>攻撃の方法を変えてみよう。</li>
+</ol>
 </body>
 </html>
