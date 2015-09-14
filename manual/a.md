@@ -49,3 +49,6 @@ Rubyに関しては多くの書籍が発行されています。図書館にも�
 2015年7月23日 v1.0.0版 発行
 
 (C) 2015 Kana Miyasaka, Masaki Ozawa
+
+Released under the MIT license
+http://opensource.org/licenses/mit-license.php
